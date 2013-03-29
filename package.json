@@ -1,0 +1,42 @@
+{
+  "name": "cmdr-input",
+  "description": "commander.js input handling class",
+  "version": "0.1.0",
+  "main": "./dist/cmdr-input.js",
+  "keywords": [],
+  "contributors": [
+    {
+      "name": "David Smith",
+      "web": "https://github.com/codeactual/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/codeactual/cmdr-input/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeactual/cmdr-input.git"
+  },
+  "devDependencies": {
+    "chai": "~1.5.0",
+    "component": "~0.13.1",
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.6",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-shell": "~0.2.1",
+    "mocha": "~1.8.2",
+    "sinon": "~1.6.0",
+    "sinon-chai": "~2.3.1"
+  },
+  "scripts": {
+    "test": "grunt build && mocha --reporter spec test.js"
+  },
+  "gitemplate": {
+    "originSha": "cd1c0bd3fb",
+    "originUrl": "/var/dev/gitemplate-node-component/.git"
+  },
+  "dependencies": {
+    "rsvp": "~1.2.0"
+  }
+}
