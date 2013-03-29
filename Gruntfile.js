@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         failOnError: true
       },
       build: {
-        command: 'component install --dev && component build --standalone CmdrInput --name build --dev'
+        command: 'component install --dev && component build --standalone CmdrInput --name cmdr-input --out dist --dev'
       },
       dist: {
         command: 'component build --standalone ci --name cmdr-input'

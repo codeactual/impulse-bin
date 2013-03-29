@@ -5,7 +5,7 @@ var should = chai.should();
 chai.Assertion.includeStack = true;
 chai.use(require('sinon-chai'));
 
-var ci = require('./build/build');
+var ci = require('./dist/cmdr-input');
 var CmdrInput = ci.CmdrInput;
 var requireComponent = ci.require;
 
