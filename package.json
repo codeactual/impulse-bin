@@ -1,8 +1,8 @@
 {
-  "name": "cmdr-input",
+  "name": "cli-mod",
   "description": "commander.js input handling class",
   "version": "0.1.0",
-  "main": "./dist/cmdr-input.js",
+  "main": "./dist/cli-mod.js",
   "keywords": [],
   "contributors": [
     {
@@ -11,12 +11,12 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/codeactual/cmdr-input/issues"
+    "url": "https://github.com/codeactual/cli-mod/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codeactual/cmdr-input.git"
+    "url": "https://github.com/codeactual/cli-mod.git"
   },
   "devDependencies": {
     "chai": "~1.5.0",
@@ -37,7 +37,6 @@
     "originUrl": "/var/dev/gitemplate-node-component/.git"
   },
   "peerDependencies": {
-    "rsvp": "~1.2.0",
     "shelljs": "~0.1.2"
   }
 }

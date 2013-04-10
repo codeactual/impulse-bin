@@ -1,6 +1,6 @@
 {
-  "name": "cmdr-input",
-  "repo": "codeactual/cmdr-input",
+  "name": "cli-mod",
+  "repo": "codeactual/cli-mod",
   "description": "commander.js input handling class",
   "version": "0.1.0",
   "keywords": [],
@@ -14,7 +14,8 @@
     "codeactual/sinon-doublist": "0.2.3"
   },
   "scripts": [
-    "index.js"
+    "index.js",
+    "lib/adapter/commander.js"
   ],
   "license": "MIT"
 }

@@ -1,8 +1,8 @@
-# cmdr-input
+# cli-mod
 
 Modules for commander.js
 
-[![Build Status](https://travis-ci.org/codeactual/cmdr-input.png)](https://travis-ci.org/codeactual/cmdr-input)
+[![Build Status](https://travis-ci.org/codeactual/cli-mod.png)](https://travis-ci.org/codeactual/cli-mod)
 
 ## Goals
 
@@ -13,20 +13,21 @@ Modules for commander.js
 
 ```js
 // ./bin/cli
-var ci = require('cmdr-input').create();
+var ci = require('cli-mod').create();
 ci
   .set('nativeRequire', require)
   .push(require('./lib/cli'))
   .run(commander);
 
 // ./lib/cli/index.js
-module.exports = function() {
+module.exports = {cli: cli};
+function cli() {
   this.exitOnMissingOption(this.input, ['config']);
 
   // ...
 
   this.promise.resolve();
-};
+}
 ```
 
 ## Installation
@@ -35,7 +36,7 @@ module.exports = function() {
 
 Install to `components/`:
 
-    $ component install codeactual/cmdr-input
+    $ component install codeactual/cli-mod
 
 Build standalone file in `build/`:
 

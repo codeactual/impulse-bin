@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     jshint: {
       src: {
         files: {
-          src: ['index.js']
+          src: ['index.js', 'lib/**/*.js']
         }
       },
       grunt: {
@@ -32,10 +32,10 @@ module.exports = function(grunt) {
         failOnError: true
       },
       build: {
-        command: 'component install --dev && component build --standalone CmdrInput --name cmdr-input --out dist --dev'
+        command: 'component install --dev && component build --standalone CliMod --name cli-mod --out dist --dev'
       },
       dist: {
-        command: 'component build --standalone ci --name cmdr-input'
+        command: 'component build --standalone ci --name cli-mod --out dist'
       },
       shrinkwrap: {
         command: 'npm shrinkwrap'
