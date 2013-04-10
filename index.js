@@ -25,7 +25,11 @@ function create() {
 function CmdrInput() {
   this.settings = {
     nativeRequire: {},
-    done: noOp
+    done: noOp,
+    quietOption: 'quiet',
+    verboseOption: 'verbose',
+    input: {}, // commander.js module,
+    requiredOptionTmpl: '--%s is required'
   };
 }
 
@@ -68,28 +72,71 @@ CmdrInput.prototype.run = function(commander) {
 
 var helpers = {};
 
-helpers.requireNode = function(id) {
-  return this.get('nativeRequire')(id);
+/**
+ * util.debug() wrapper that checks --verbose before continuing.
+ * Use debug() to block.
+ */
+helpers.verbose = function() {
+  if (!this.get('input')[this.get('verboseOption')]) { return; }
+  this.console.apply(this, this.get('nativeRequire')('util').debug, arguments);
 };
 
-helpers.requireComponent = function(id) {
-  return require(id);
+/**
+ * util.format() wrapper with timestamp and console.log.
+ */
+helpers.stdout = function() { this.console.apply(this, console.log, arguments); };
+
+/**
+ * util.format() wrapper with timestamp and console.error.
+ */
+helpers.stderr = function() { this.console.apply(this, console.error, arguments); };
+
+/**
+ * util.format() wrapper with timestamp and injected output function.
+ * Respects --quiet.
+ *
+ * @param {function} fn Ex. console.log
+ * @param {mixed} args* For util.format()
+ */
+helpers.console = function(fn) {
+  if (this.get('input')[this.get('quietOption')]) { return; }
+  var sprintf = this.get('nativeRequire')('util').format;
+  fn(sprintf(
+    '[%s] %s',
+    (new Date()).toUTCString(), sprintf.apply(null, [].slice.call(arguments, 1))
+  ));
 };
 
 helpers.exit = function(msg, code) {
-  this.get('nativeRequire')('util').error(msg);
+  this.stderr(msg);
   process.exit(typeof code === 'undefined' ? 1 : code);
 };
 
-helpers.exitOnShelljsError = function(res) {
-  if (res.code !== 0) { this.exit(res.output, res.code); }
+helpers.exitOnMissingOption = function(input, code) {
+  var self = this;
+  var each = require('each');
+  var sprintf = this.get('nativeRequire')('util').format;
+  each(this.get('input'), function(param) {
+    if (!input[param]) {
+      self.exit(sprintf(this.get('requiredOptionTmpl'), param), code);
+    }
+  });
 };
 
-helpers.exitOnMissingOption = function(input, options, code) {
-  var self = this;
-  options.forEach(function(param) {
-    if (!input[param]) { self.exit('--' + param + ' required', code); }
-  });
+helpers.require = {};
+
+helpers.require.Node = function(id) {
+  return this.get('nativeRequire')(id);
+};
+
+helpers.require.component = function(id) {
+  return require(id);
+};
+
+helpers.shelljs = {};
+
+helpers.shell.exitOnError = function(res) {
+  if (res.code !== 0) { this.exit(res.output, res.code); }
 };
 
 /**
