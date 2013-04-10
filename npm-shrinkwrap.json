@@ -2,15 +2,19 @@
   "name": "cmdr-input",
   "version": "0.1.0",
   "dependencies": {
-    "chai": {
-      "version": "1.5.0",
-      "from": "chai@1.5.0",
-      "resolved": "https://registry.npmjs.org/chai/-/chai-1.5.0.tgz"
-    },
     "grunt-shell": {
       "version": "0.2.1",
       "from": "grunt-shell@0.2.1",
       "resolved": "https://registry.npmjs.org/grunt-shell/-/grunt-shell-0.2.1.tgz"
+    },
+    "shelljs": {
+      "version": "0.1.2",
+      "from": "shelljs@"
+    },
+    "chai": {
+      "version": "1.5.0",
+      "from": "chai@1.5.0",
+      "resolved": "https://registry.npmjs.org/chai/-/chai-1.5.0.tgz"
     },
     "rsvp": {
       "version": "1.2.0",
@@ -21,10 +25,6 @@
       "version": "2.3.1",
       "from": "sinon-chai@2.3.1",
       "resolved": "https://registry.npmjs.org/sinon-chai/-/sinon-chai-2.3.1.tgz"
-    },
-    "shelljs": {
-      "version": "0.1.2",
-      "from": "shelljs@"
     },
     "mocha": {
       "version": "1.8.2",
