@@ -33,9 +33,13 @@ function CliMod() {
 
   // Assigned in run():
   this.adapter = null; // Ex. require('./lib/adapter/commander.js')
+  this.clc = null; // cli-color module
   this.options = {}; // Ex, commander options object from adapter
   this.provider = null; // Ex. commander module after parse()
-  this.sprintf = null; // util format()
+  this.sprintf = null; // util.format()
+  this.stderr = null; // Logger by createConsole()
+  this.stdout = null; // Logger by createConsole()
+  this.verbose = null; // Logger by createConsole()
 }
 
 configurable(CliMod.prototype);
@@ -52,19 +56,25 @@ CliMod.prototype.options = function() {
 CliMod.prototype.run = function(provider, module) {
   var extend = require('extend');
   var nativeRequire = this.get('nativeRequire');
+  var util = this.get('nativeRequire')('util');
 
   this.adapter = require('./lib/adapter/' + this.get('adapter'));
+  this.clc = nativeRequire('cli-color');
   this.options = this.adapter.options(provider);
   this.provider = provider;
-  this.sprintf = this.get('nativeRequire')('util').format;
+  this.sprintf = util.format;
+  this.stderr = this.createConsole('stderr', console.error, this.clc.red);
+  this.stdout = this.createConsole('stdout', console.log);
+  this.verbose = this.createConsole('verbose', util.debug);
 
   var context = {
+    args: this.adapter.args(provider),
+    clc: this.clc,
     fs: nativeRequire('fs'),
     options: this.options,
-    args: this.adapter.args(provider),
     provider: provider,
     shelljs: require('outer-shelljs').create(),
-    util: nativeRequire('util')
+    util: util
   };
   extend(context, helpers);
   module.cli.call(context);
@@ -76,23 +86,44 @@ var helpers = {};
  * util.format() wrapper with timestamp and injected output function.
  * Respects --quiet.
  *
+ * @param {string} name Source logger's name, ex. 'stderr'
  * @param {function} fn Ex. console.log
+ * @param {function} colorFn cli-color colorizer
+ * @param {boolean} colorBody Apply colorFn to log body in addition to name
  * @param {mixed} args* For util.format()
  */
-helpers.console = function(fn) {
+helpers.console = function(name, fn, colorFn, colorBody) {
   if (this.get('input')[this.get('quietOption')]) { return; }
-  var sprintf = this.get('nativeRequire')('util').format;
-  fn(sprintf(
-    '[%s] %s',
-    (new Date()).toUTCString(), sprintf.apply(null, [].slice.call(arguments, 1))
+  colorFn = colorFn || defClrFn;
+  var bodyColorFn = colorBody ? colorFn : defClrFn;
+  fn(this.sprintf(
+    '[%s] %s%s',
+    (new Date()).toUTCString(),
+    name ? colorFn(name + ' ') : '',
+    bodyColorFn(this.sprintf.apply(null, [].slice.call(arguments, 4)))
   ));
+};
+
+/**
+ * Create a helper.console() wrapper.
+ *
+ * @param {string} name Source logger's name, ex. 'stderr'
+ * @param {function} fn Ex. console.log
+ * @param {function} colorFn cli-color colorizer
+ * @param {boolean} colorBody Apply colorFn to log body in addition to name
+ * @return {function} Accepts util.format() arguments
+ */
+helpers.createConsole = function(name, fn, colorFn, colorBody) {
+  var self = this;
+  return function() {
+    self.console.apply(self, name, fn, colorFn, colorBody, arguments);
+  };
 };
 
 helpers.exit = function(msg, code) {
   this.stderr(msg);
   process.exit(typeof code === 'undefined' ? 1 : code);
 };
-
 
 /**
  * Exit if the given CLI options are undefined.
@@ -102,23 +133,12 @@ helpers.exit = function(msg, code) {
  */
 helpers.exitOnMissingOption = function(key, exitCode) {
   var self = this;
-  var sprintf = this.get('nativeRequire')('util').format;
   [].concat(key).forEach(function(key) {
     if (typeof self.options[key] === 'undefined') {
-      self.exit(sprintf(self.get('requiredOptionTmpl'), key), exitCode);
+      self.exit(self.sprintf(self.get('requiredOptionTmpl'), key), exitCode);
     }
   });
 };
-
-/**
- * util.format() wrapper with timestamp and console.error.
- */
-helpers.stderr = function() { this.console.apply(this, console.error, arguments); };
-
-/**
- * util.format() wrapper with timestamp and console.log.
- */
-helpers.stdout = function() { this.console.apply(this, console.log, arguments); };
 
 /**
  * util.debug() wrapper that checks --verbose before continuing.
@@ -158,3 +178,5 @@ function mixinCliMod(ext) { require('extend')(CliMod.prototype, ext); }
  * @param {object} ext
  */
 function mixinHelpers(ext) { require('extend')(helpers, ext); }
+
+function defClrFn(str) { return str; }
