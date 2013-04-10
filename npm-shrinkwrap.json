@@ -2,11 +2,6 @@
   "name": "cmdr-input",
   "version": "0.1.0",
   "dependencies": {
-    "rsvp": {
-      "version": "1.2.0",
-      "from": "rsvp@",
-      "resolved": "https://registry.npmjs.org/rsvp/-/rsvp-1.2.0.tgz"
-    },
     "chai": {
       "version": "1.5.0",
       "from": "chai@1.5.0",
@@ -17,10 +12,19 @@
       "from": "grunt-shell@0.2.1",
       "resolved": "https://registry.npmjs.org/grunt-shell/-/grunt-shell-0.2.1.tgz"
     },
+    "rsvp": {
+      "version": "1.2.0",
+      "from": "rsvp@",
+      "resolved": "https://registry.npmjs.org/rsvp/-/rsvp-1.2.0.tgz"
+    },
     "sinon-chai": {
       "version": "2.3.1",
       "from": "sinon-chai@2.3.1",
       "resolved": "https://registry.npmjs.org/sinon-chai/-/sinon-chai-2.3.1.tgz"
+    },
+    "shelljs": {
+      "version": "0.1.2",
+      "from": "shelljs@"
     },
     "mocha": {
       "version": "1.8.2",
@@ -234,6 +238,146 @@
         }
       }
     },
+    "grunt-cli": {
+      "version": "0.1.6",
+      "from": "grunt-cli@0.1.6",
+      "resolved": "https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.6.tgz",
+      "dependencies": {
+        "nopt": {
+          "version": "1.0.10",
+          "from": "nopt@1.0.10",
+          "resolved": "https://registry.npmjs.org/nopt/-/nopt-1.0.10.tgz",
+          "dependencies": {
+            "abbrev": {
+              "version": "1.0.4",
+              "from": "abbrev@1.0.4",
+              "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.0.4.tgz"
+            }
+          }
+        },
+        "findup-sync": {
+          "version": "0.1.2",
+          "from": "findup-sync@0.1.2",
+          "resolved": "https://registry.npmjs.org/findup-sync/-/findup-sync-0.1.2.tgz",
+          "dependencies": {
+            "glob": {
+              "version": "3.1.21",
+              "from": "glob@3.1.21",
+              "resolved": "https://registry.npmjs.org/glob/-/glob-3.1.21.tgz",
+              "dependencies": {
+                "minimatch": {
+                  "version": "0.2.11",
+                  "from": "minimatch@0.2.11",
+                  "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.11.tgz",
+                  "dependencies": {
+                    "lru-cache": {
+                      "version": "2.3.0",
+                      "from": "lru-cache@2.3.0",
+                      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.3.0.tgz"
+                    },
+                    "sigmund": {
+                      "version": "1.0.0",
+                      "from": "sigmund@1.0.0",
+                      "resolved": "https://registry.npmjs.org/sigmund/-/sigmund-1.0.0.tgz"
+                    }
+                  }
+                },
+                "graceful-fs": {
+                  "version": "1.2.0",
+                  "from": "graceful-fs@1.2.0",
+                  "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-1.2.0.tgz"
+                },
+                "inherits": {
+                  "version": "1.0.0",
+                  "from": "inherits@1.0.0",
+                  "resolved": "https://registry.npmjs.org/inherits/-/inherits-1.0.0.tgz"
+                }
+              }
+            },
+            "lodash": {
+              "version": "1.0.1",
+              "from": "lodash@1.0.1",
+              "resolved": "https://registry.npmjs.org/lodash/-/lodash-1.0.1.tgz"
+            }
+          }
+        }
+      }
+    },
+    "grunt-contrib-jshint": {
+      "version": "0.3.0",
+      "from": "grunt-contrib-jshint@0.3.0",
+      "resolved": "https://registry.npmjs.org/grunt-contrib-jshint/-/grunt-contrib-jshint-0.3.0.tgz",
+      "dependencies": {
+        "jshint": {
+          "version": "1.1.0",
+          "from": "jshint@1.1.0",
+          "resolved": "https://registry.npmjs.org/jshint/-/jshint-1.1.0.tgz",
+          "dependencies": {
+            "esprima": {
+              "version": "1.1.0-dev",
+              "from": "https://github.com/ariya/esprima/tarball/master",
+              "resolved": "https://github.com/ariya/esprima/tarball/master"
+            },
+            "shelljs": {
+              "version": "0.1.2",
+              "from": "shelljs@0.1.2",
+              "resolved": "https://registry.npmjs.org/shelljs/-/shelljs-0.1.2.tgz"
+            },
+            "underscore": {
+              "version": "1.4.4",
+              "from": "underscore@1.4.4",
+              "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz"
+            },
+            "peakle": {
+              "version": "0.0.1",
+              "from": "peakle@0.0.1",
+              "resolved": "https://registry.npmjs.org/peakle/-/peakle-0.0.1.tgz"
+            },
+            "cli": {
+              "version": "0.4.4-2",
+              "from": "cli@0.4.4-2",
+              "resolved": "https://registry.npmjs.org/cli/-/cli-0.4.4-2.tgz",
+              "dependencies": {
+                "glob": {
+                  "version": "3.1.21",
+                  "from": "glob@3.1.21",
+                  "resolved": "https://registry.npmjs.org/glob/-/glob-3.1.21.tgz",
+                  "dependencies": {
+                    "graceful-fs": {
+                      "version": "1.2.0",
+                      "from": "graceful-fs@1.2.0",
+                      "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-1.2.0.tgz"
+                    },
+                    "inherits": {
+                      "version": "1.0.0",
+                      "from": "inherits@1.0.0",
+                      "resolved": "https://registry.npmjs.org/inherits/-/inherits-1.0.0.tgz"
+                    }
+                  }
+                }
+              }
+            },
+            "minimatch": {
+              "version": "0.2.11",
+              "from": "minimatch@0.2.11",
+              "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.11.tgz",
+              "dependencies": {
+                "lru-cache": {
+                  "version": "2.3.0",
+                  "from": "lru-cache@2.3.0",
+                  "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.3.0.tgz"
+                },
+                "sigmund": {
+                  "version": "1.0.0",
+                  "from": "sigmund@1.0.0",
+                  "resolved": "https://registry.npmjs.org/sigmund/-/sigmund-1.0.0.tgz"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "component": {
       "version": "0.13.2",
       "from": "component@0.13.2",
@@ -385,146 +529,6 @@
           "version": "0.7.2",
           "from": "debug@0.7.2",
           "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.2.tgz"
-        }
-      }
-    },
-    "grunt-cli": {
-      "version": "0.1.6",
-      "from": "grunt-cli@0.1.6",
-      "resolved": "https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.6.tgz",
-      "dependencies": {
-        "nopt": {
-          "version": "1.0.10",
-          "from": "nopt@1.0.10",
-          "resolved": "https://registry.npmjs.org/nopt/-/nopt-1.0.10.tgz",
-          "dependencies": {
-            "abbrev": {
-              "version": "1.0.4",
-              "from": "abbrev@1.0.4",
-              "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.0.4.tgz"
-            }
-          }
-        },
-        "findup-sync": {
-          "version": "0.1.2",
-          "from": "findup-sync@0.1.2",
-          "resolved": "https://registry.npmjs.org/findup-sync/-/findup-sync-0.1.2.tgz",
-          "dependencies": {
-            "glob": {
-              "version": "3.1.21",
-              "from": "glob@3.1.21",
-              "resolved": "https://registry.npmjs.org/glob/-/glob-3.1.21.tgz",
-              "dependencies": {
-                "minimatch": {
-                  "version": "0.2.11",
-                  "from": "minimatch@0.2.11",
-                  "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.11.tgz",
-                  "dependencies": {
-                    "lru-cache": {
-                      "version": "2.3.0",
-                      "from": "lru-cache@2.3.0",
-                      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.3.0.tgz"
-                    },
-                    "sigmund": {
-                      "version": "1.0.0",
-                      "from": "sigmund@1.0.0",
-                      "resolved": "https://registry.npmjs.org/sigmund/-/sigmund-1.0.0.tgz"
-                    }
-                  }
-                },
-                "graceful-fs": {
-                  "version": "1.2.0",
-                  "from": "graceful-fs@1.2.0",
-                  "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-1.2.0.tgz"
-                },
-                "inherits": {
-                  "version": "1.0.0",
-                  "from": "inherits@1.0.0",
-                  "resolved": "https://registry.npmjs.org/inherits/-/inherits-1.0.0.tgz"
-                }
-              }
-            },
-            "lodash": {
-              "version": "1.0.1",
-              "from": "lodash@1.0.1",
-              "resolved": "https://registry.npmjs.org/lodash/-/lodash-1.0.1.tgz"
-            }
-          }
-        }
-      }
-    },
-    "grunt-contrib-jshint": {
-      "version": "0.3.0",
-      "from": "grunt-contrib-jshint@0.3.0",
-      "resolved": "https://registry.npmjs.org/grunt-contrib-jshint/-/grunt-contrib-jshint-0.3.0.tgz",
-      "dependencies": {
-        "jshint": {
-          "version": "1.1.0",
-          "from": "jshint@1.1.0",
-          "resolved": "https://registry.npmjs.org/jshint/-/jshint-1.1.0.tgz",
-          "dependencies": {
-            "esprima": {
-              "version": "1.1.0-dev",
-              "from": "https://github.com/ariya/esprima/tarball/master",
-              "resolved": "https://github.com/ariya/esprima/tarball/master"
-            },
-            "shelljs": {
-              "version": "0.1.2",
-              "from": "shelljs@0.1.2",
-              "resolved": "https://registry.npmjs.org/shelljs/-/shelljs-0.1.2.tgz"
-            },
-            "underscore": {
-              "version": "1.4.4",
-              "from": "underscore@1.4.4",
-              "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz"
-            },
-            "peakle": {
-              "version": "0.0.1",
-              "from": "peakle@0.0.1",
-              "resolved": "https://registry.npmjs.org/peakle/-/peakle-0.0.1.tgz"
-            },
-            "cli": {
-              "version": "0.4.4-2",
-              "from": "cli@0.4.4-2",
-              "resolved": "https://registry.npmjs.org/cli/-/cli-0.4.4-2.tgz",
-              "dependencies": {
-                "glob": {
-                  "version": "3.1.21",
-                  "from": "glob@3.1.21",
-                  "resolved": "https://registry.npmjs.org/glob/-/glob-3.1.21.tgz",
-                  "dependencies": {
-                    "graceful-fs": {
-                      "version": "1.2.0",
-                      "from": "graceful-fs@1.2.0",
-                      "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-1.2.0.tgz"
-                    },
-                    "inherits": {
-                      "version": "1.0.0",
-                      "from": "inherits@1.0.0",
-                      "resolved": "https://registry.npmjs.org/inherits/-/inherits-1.0.0.tgz"
-                    }
-                  }
-                }
-              }
-            },
-            "minimatch": {
-              "version": "0.2.11",
-              "from": "minimatch@0.2.11",
-              "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.11.tgz",
-              "dependencies": {
-                "lru-cache": {
-                  "version": "2.3.0",
-                  "from": "lru-cache@2.3.0",
-                  "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-2.3.0.tgz"
-                },
-                "sigmund": {
-                  "version": "1.0.0",
-                  "from": "sigmund@1.0.0",
-                  "resolved": "https://registry.npmjs.org/sigmund/-/sigmund-1.0.0.tgz"
-                }
-              }
-            }
-          }
         }
       }
     }

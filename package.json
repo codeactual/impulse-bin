@@ -36,7 +36,8 @@
     "originSha": "cd1c0bd3fb",
     "originUrl": "/var/dev/gitemplate-node-component/.git"
   },
-  "dependencies": {
-    "rsvp": "~1.2.0"
+  "peerDependencies": {
+    "rsvp": "~1.2.0",
+    "shelljs": "~0.1.2"
   }
 }
