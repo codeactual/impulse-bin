@@ -2,7 +2,7 @@
   "name": "cli-mod",
   "description": "commander.js input handling class",
   "version": "0.1.0",
-  "main": "./dist/cli-mod.js",
+  "main": "index.js",
   "keywords": [],
   "contributors": [
     {

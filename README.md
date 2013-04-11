@@ -44,6 +44,12 @@ Build standalone file in `build/`:
 
 ## API
 
+```js
+  this.stderr = this.createConsole('stderr', console.error, this.clc.red);
+  this.stdout = this.createConsole('stdout', console.log);
+  this.verbose = this.createConsole('verbose', util.debug);
+```
+
 ### [method]
 
 > [method desc]

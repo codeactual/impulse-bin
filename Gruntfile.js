@@ -44,6 +44,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['jshint', 'shell:shrinkwrap']);
-  grunt.registerTask('build', ['shell:build']);
-  grunt.registerTask('dist', ['shell:dist']);
+  grunt.registerTask('build', ['default', 'shell:build']);
+  grunt.registerTask('dist', ['default', 'shell:dist']);
 };

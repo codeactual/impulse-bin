@@ -8,13 +8,15 @@
     "visionmedia/configurable.js": "f87ca5f",
     "codeactual/outer-shelljs": "9e2e77e",
     "codeactual/extend": "0.1.0",
-    "component/each": "8b1f645"
+    "component/each": "8b1f645",
+    "component/bind": "9a55368"
   },
   "development": {
     "codeactual/sinon-doublist": "0.2.3"
   },
+  "main": "lib/cli-mod.js",
   "scripts": [
-    "index.js",
+    "lib/cli-mod.js",
     "lib/adapter/commander.js"
   ],
   "license": "MIT"
