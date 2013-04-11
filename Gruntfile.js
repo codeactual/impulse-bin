@@ -18,7 +18,7 @@ module.exports = function(grunt) {
       },
       tests: {
         files: {
-          src: ['test.js']
+          src: ['test/lib/**/*.js']
         }
       },
       json: {
@@ -36,14 +36,11 @@ module.exports = function(grunt) {
       },
       dist: {
         command: 'component build --standalone ci --name cli-mod --out dist'
-      },
-      shrinkwrap: {
-        command: 'npm shrinkwrap'
       }
     }
   });
 
-  grunt.registerTask('default', ['jshint', 'shell:shrinkwrap']);
+  grunt.registerTask('default', ['jshint']);
   grunt.registerTask('build', ['default', 'shell:build']);
   grunt.registerTask('dist', ['default', 'shell:dist']);
 };

@@ -14,9 +14,9 @@
   "development": {
     "codeactual/sinon-doublist": "0.2.3"
   },
-  "main": "lib/cli-mod.js",
+  "main": "lib/cli-mod/index.js",
   "scripts": [
-    "lib/cli-mod.js",
+    "lib/cli-mod/index.js",
     "lib/adapter/commander.js"
   ],
   "license": "MIT"
