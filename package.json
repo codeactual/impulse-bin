@@ -40,6 +40,6 @@
     "shelljs": "~0.1.2"
   },
   "dependencies": {
-    "cli-color": "~0.2.2"
+    "node-console": "~0.1.0"
   }
 }
