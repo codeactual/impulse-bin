@@ -40,6 +40,6 @@
     "shelljs": "~0.1.2"
   },
   "dependencies": {
-    "node-console": "~0.1.0"
+    "codeactual-node-console": "~0.1.0"
   }
 }
