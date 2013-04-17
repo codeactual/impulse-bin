@@ -7,7 +7,7 @@ chai.use(require('sinon-chai'));
 
 var cliMod = require('../../..');
 
-require('sinon-doublist')('mocha');
+require('sinon-doublist')(sinon, 'mocha');
 
 describe('cli-mod', function() {
   describe('CliMod', function() {
