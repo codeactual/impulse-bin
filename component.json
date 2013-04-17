@@ -1,23 +1,20 @@
 {
   "name": "cli-mod",
   "repo": "codeactual/cli-mod",
-  "description": "commander.js input handling class",
+  "description": "Modules for commander.js and others",
   "version": "0.1.0",
   "keywords": [],
   "dependencies": {
     "visionmedia/configurable.js": "f87ca5f",
-    "codeactual/outer-shelljs": "9e2e77e",
     "codeactual/extend": "0.1.0",
     "component/each": "8b1f645",
     "component/bind": "9a55368"
   },
   "development": {
-    "codeactual/sinon-doublist": "0.2.3"
   },
-  "main": "lib/cli-mod/index.js",
+  "main": "lib/component/main.js",
   "scripts": [
-    "lib/cli-mod/index.js",
-    "lib/adapter/commander.js"
+    "lib/component/main.js"
   ],
   "license": "MIT"
 }

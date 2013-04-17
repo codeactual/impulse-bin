@@ -32,15 +32,9 @@ function cli() {
 
 ## Installation
 
-### [Component](https://github.com/component/component)
+### [NPM](https://npmjs.org/package/codeactual-cli-mod)
 
-Install to `components/`:
-
-    $ component install codeactual/cli-mod
-
-Build standalone file in `build/`:
-
-    $ grunt dist
+    npm install codeactual-cli-mod
 
 ## API
 
@@ -60,11 +54,4 @@ Build standalone file in `build/`:
 
 ## Tests
 
-    npm install --devDependencies
     npm test
-
-## Change Log
-
-### 0.1.0
-
-* [initial features]

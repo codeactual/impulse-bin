@@ -5,20 +5,15 @@ var should = chai.should();
 chai.Assertion.includeStack = true;
 chai.use(require('sinon-chai'));
 
-var ci = require('../../../dist/cli-mod');
-ci.requireNative = require;
+var cliMod = require('../../..');
 
-var CliMod = ci.CliMod;
-var requireComponent = ci.requireComponent;
+require('sinon-doublist')('mocha');
 
-requireComponent('sinon-doublist')(sinon, 'mocha');
-
-describe('ci', function() {
+describe('cli-mod', function() {
   describe('CliMod', function() {
     beforeEach(function() {
       this.input = {};
-
-      this.ci = new CliMod();
+      this.ci = cliMod.create();
     });
 
     it('should do something', function() {

@@ -2,13 +2,21 @@ module.exports = function(grunt) {
   'use strict';
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
+
+  var mochaShelljsOpt = {stdout: true, stderr: true};
 
   grunt.initConfig({
     jshint: {
       src: {
         files: {
           src: ['index.js', 'lib/**/*.js']
+        }
+      },
+      bin: {
+        files: {
+          src: ['bin/*']
         }
       },
       grunt: {
@@ -27,20 +35,40 @@ module.exports = function(grunt) {
         }
       }
     },
+    uglify: {
+      dist: {
+        options: {
+          compress: false,
+          mangle: false,
+          beautify: true
+        },
+        files: {
+          'dist/cli-mod.js': 'dist/cli-mod.js'
+        }
+      }
+    },
     shell: {
       options: {
         failOnError: true
       },
       build: {
-        command: 'component install --dev && component build --standalone CliMod --name cli-mod --out dist --dev'
+        command: 'component install --dev && component build --standalone cliMod --name cli-mod --out dist --dev'
       },
       dist: {
-        command: 'component build --standalone ci --name cli-mod --out dist'
+        command: 'component build --standalone cliMod --name cli-mod --out dist'
+      },
+      shrinkwrap: {
+        command: 'npm shrinkwrap'
+      },
+      test_lib: {
+        options: mochaShelljsOpt,
+        command: 'mocha --colors --recursive --reporter spec test/lib'
       }
     }
   });
 
   grunt.registerTask('default', ['jshint']);
   grunt.registerTask('build', ['default', 'shell:build']);
-  grunt.registerTask('dist', ['default', 'shell:dist']);
+  grunt.registerTask('dist', ['default', 'shell:dist', 'uglify:dist', 'shell:shrinkwrap']);
+  grunt.registerTask('test', ['build', 'shell:test_lib']);
 };
