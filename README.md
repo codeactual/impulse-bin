@@ -14,10 +14,7 @@ Modules for commander.js
 ```js
 // ./bin/cli
 var ci = require('cli-mod').create();
-ci
-  .set('nativeRequire', require)
-  .push(require('./lib/cli'))
-  .run(commander);
+ci.run(commander, require('./path/to/my/module'));
 
 // ./lib/cli/index.js
 module.exports = {cli: cli};
