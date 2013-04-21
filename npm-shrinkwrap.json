@@ -1,5 +1,5 @@
 {
-  "name": "codeactual-impulse-bin",
+  "name": "impulse-bin",
   "version": "0.1.0",
   "dependencies": {
     "cli-color": {
@@ -27,7 +27,7 @@
         }
       }
     },
-    "codeactual-node-console": {
+    "long-con": {
       "version": "0.1.0",
       "dependencies": {
         "component": {
