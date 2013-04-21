@@ -1,1 +1,1 @@
-module.exports = require('./lib/cli-mod');
+module.exports = require('./lib/impulse-bin');

@@ -1,8 +1,8 @@
-# cli-mod
+# impulse-bin
 
 Modules for commander.js
 
-[![Build Status](https://travis-ci.org/codeactual/cli-mod.png)](https://travis-ci.org/codeactual/cli-mod)
+[![Build Status](https://travis-ci.org/codeactual/impulse-bin.png)](https://travis-ci.org/codeactual/impulse-bin)
 
 ## Goals
 
@@ -13,7 +13,7 @@ Modules for commander.js
 
 ```js
 // ./bin/cli
-var ci = require('cli-mod').create();
+var ci = require('impulse-bin').create();
 ci.run(commander, require('./path/to/my/module'));
 
 // ./lib/cli/index.js
@@ -29,9 +29,9 @@ function cli() {
 
 ## Installation
 
-### [NPM](https://npmjs.org/package/codeactual-cli-mod)
+### [NPM](https://npmjs.org/package/codeactual-impulse-bin)
 
-    npm install codeactual-cli-mod
+    npm install codeactual-impulse-bin
 
 ## API
 

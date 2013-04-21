@@ -43,7 +43,7 @@ module.exports = function(grunt) {
           beautify: true
         },
         files: {
-          'dist/cli-mod.js': 'dist/cli-mod.js'
+          'dist/impulse-bin.js': 'dist/impulse-bin.js'
         }
       }
     },
@@ -52,10 +52,10 @@ module.exports = function(grunt) {
         failOnError: true
       },
       build: {
-        command: 'component install --dev && component build --standalone cliMod --name cli-mod --out dist --dev'
+        command: 'component install --dev && component build --standalone impulseBin --name impulse-bin --out dist --dev'
       },
       dist: {
-        command: 'component build --standalone cliMod --name cli-mod --out dist'
+        command: 'component build --standalone impulseBin --name impulse-bin --out dist'
       },
       shrinkwrap: {
         command: 'npm shrinkwrap'

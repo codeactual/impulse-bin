@@ -5,15 +5,15 @@ var should = chai.should();
 chai.Assertion.includeStack = true;
 chai.use(require('sinon-chai'));
 
-var cliMod = require('../../..');
+var impulseBin = require('../../..');
 
 require('sinon-doublist')(sinon, 'mocha');
 
-describe('cli-mod', function() {
-  describe('CliMod', function() {
+describe('impulse-bin', function() {
+  describe('ImpulseBin', function() {
     beforeEach(function() {
       this.input = {};
-      this.ci = cliMod.create();
+      this.ci = impulseBin.create();
     });
 
     it('should do something', function() {

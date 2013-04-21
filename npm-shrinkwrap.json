@@ -1,5 +1,5 @@
 {
-  "name": "codeactual-cli-mod",
+  "name": "codeactual-impulse-bin",
   "version": "0.1.0",
   "dependencies": {
     "cli-color": {

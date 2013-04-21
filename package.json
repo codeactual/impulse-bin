@@ -1,5 +1,5 @@
 {
-  "name": "codeactual-cli-mod",
+  "name": "codeactual-impulse-bin",
   "description": "Modules for commander.js and others",
   "version": "0.1.0",
   "main": "index.js",
@@ -11,12 +11,12 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/codeactual/cli-mod/issues"
+    "url": "https://github.com/codeactual/impulse-bin/issues"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codeactual/cli-mod.git"
+    "url": "https://github.com/codeactual/impulse-bin.git"
   },
   "devDependencies": {
     "chai": "~1.5.0",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "cli-color": "~0.2.2",
-    "codeactual-node-console": "~0.1.0",
+    "long-con": "~0.1.0",
     "outer-shelljs": "~0.3.0"
   }
 }

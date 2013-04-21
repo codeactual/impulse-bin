@@ -200,24 +200,24 @@
             };
         };
     });
-    require.register("cli-mod/lib/component/main.js", function(exports, require, module) {
+    require.register("impulse-bin/lib/component/main.js", function(exports, require, module) {
         module.exports = {
             requireComponent: require
         };
     });
-    require.alias("visionmedia-configurable.js/index.js", "cli-mod/deps/configurable.js/index.js");
-    require.alias("codeactual-extend/index.js", "cli-mod/deps/extend/index.js");
-    require.alias("component-each/index.js", "cli-mod/deps/each/index.js");
+    require.alias("visionmedia-configurable.js/index.js", "impulse-bin/deps/configurable.js/index.js");
+    require.alias("codeactual-extend/index.js", "impulse-bin/deps/extend/index.js");
+    require.alias("component-each/index.js", "impulse-bin/deps/each/index.js");
     require.alias("component-type/index.js", "component-each/deps/type/index.js");
-    require.alias("component-bind/index.js", "cli-mod/deps/bind/index.js");
-    require.alias("cli-mod/lib/component/main.js", "cli-mod/index.js");
+    require.alias("component-bind/index.js", "impulse-bin/deps/bind/index.js");
+    require.alias("impulse-bin/lib/component/main.js", "impulse-bin/index.js");
     if (typeof exports == "object") {
-        module.exports = require("cli-mod");
+        module.exports = require("impulse-bin");
     } else if (typeof define == "function" && define.amd) {
         define(function() {
-            return require("cli-mod");
+            return require("impulse-bin");
         });
     } else {
-        window["cliMod"] = require("cli-mod");
+        window["impulseBin"] = require("impulse-bin");
     }
 })();
