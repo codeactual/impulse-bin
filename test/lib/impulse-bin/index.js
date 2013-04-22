@@ -28,6 +28,9 @@ describe('ImpulseBin', function() {
     this.exitOnMissingOptionStub = this.stub(this.ib, 'exitOnMissingOption');
     this.exitOnShelljsErrStub = this.stub(this.ib, 'exitOnShelljsErr');
 
+    this.verboseLogger = function() {};
+    this.createVerboseStub.returns(this.verboseLogger);
+
     this.provider = require('commander');
     this.handler = this.spy();
   });
@@ -75,10 +78,8 @@ describe('ImpulseBin', function() {
     });
 
     it('should init verbose logger', function() {
-      var logger = {iAmA: 'verbose logger'};
-      this.ib.createVerbose.returns(logger);
       this.ib.run(this.provider, this.handler);
-      this.ib.verbose.should.deep.equal(logger);
+      this.ib.verbose.should.deep.equal(this.verboseLogger);
     });
 
     describe('injected context', function() {
@@ -126,8 +127,9 @@ describe('ImpulseBin', function() {
       });
 
       it('should include #exit mixin', function() {
-        this.handler.thisValues[0].exit();
-        this.exitStub.should.have.been.called;
+        this.handler.thisValues[0].exit('err', 2);
+        this.exitStub.should.have.been.calledWithExactly('err', 2);
+        this.exitStub.should.have.been.calledOn(this.ib);
       });
 
       it('should include #exitOnMissingOption mixin', function() {
@@ -146,40 +148,93 @@ describe('ImpulseBin', function() {
   });
 
   describe('#createVerbose', function() {
-    it.skip('should use default logger name', function() {
+    beforeEach(function() {
+      this.ib.createVerbose.restore();
+      this.ib.run(this.provider, this.handler);
+      this.name = 'verbose';
     });
 
-    it.skip('should use optional logger name', function() {
+    it('should return no-op by default', function() {
+      this.ib.createVerbose(this.name).should.be.a('function');
+      this.createConsoleStub.callCount.should.equal(2); // Only stdout/stderr in run()
     });
 
-    it.skip('should return no-op by default', function() {
+    it('should optionally return logger', function() {
+      this.options.verbose = true;
+      this.createConsoleStub.returns(this.verboseLogger);
+      this.ib.createVerbose(this.name).should.deep.equal(this.verboseLogger);
     });
 
-    it.skip('should optionally return logger', function() {
+    it('should use optional logger name', function() {
+      this.options.showVerbose = true;
+      this.ib.set('verboseOption', 'showVerbose');
+      this.createConsoleStub.returns(this.verboseLogger);
+      this.ib.createVerbose(this.name).should.deep.equal(this.verboseLogger);
     });
   });
 
   describe('#exit', function() {
-    it.skip('should output message to stderr', function() {
+    beforeEach(function() {
+      this.ib.exit.restore();
+      this.createConsoleStub.returns(function() {});
+      this.ib.run(this.provider, this.handler);
+      this.procExitStub = this.stub(process, 'exit');
+      this.msg = 'reason';
     });
 
-    it.skip('should exit process with default code', function() {
+    it('should output message to stderr', function() {
+      var stub = this.stub(this.ib, 'stderr');
+      this.ib.exit(this.msg);
+      stub.should.have.been.calledWithExactly(this.msg);
     });
 
-    it.skip('should exit process with optional code', function() {
+    it('should exit process with default code', function() {
+      this.ib.exit(this.msg);
+      this.procExitStub.should.have.been.calledWithExactly(1);
+    });
+
+    it('should exit process with optional code', function() {
+      this.ib.exit(this.msg, 2);
+      this.procExitStub.should.have.been.calledWithExactly(2);
     });
   });
 
   describe('#exitOnMissingOption', function() {
-    it.skip('should use #exit', function() {
+    beforeEach(function() {
+      this.ib.exitOnMissingOption.restore();
+      this.ib.run(this.provider, this.handler);
+    });
+
+    it('should use #exit', function() {
+      this.ib.exitOnMissingOption('fakeKey', 2);
+      this.exitStub.should.not.have.been.called;
+
+      this.ib.exitOnMissingOption('notPresent', 2);
+      this.exitStub.should.have.been.calledWithExactly('--notPresent is required', 2);
+    });
+
+    it('should use accept array', function() {
+      this.ib.exitOnMissingOption(['fakeKey'], 2);
+      this.exitStub.should.not.have.been.called;
+
+      this.ib.exitOnMissingOption(['fakeKey', 'notPresent'], 2);
+      this.exitStub.should.have.been.calledWithExactly('--notPresent is required', 2);
     });
   });
 
   describe('#exitOnShelljsErr', function() {
-    it.skip('should do nothing on zero code', function() {
+    beforeEach(function() {
+      this.ib.exitOnShelljsErr.restore();
     });
 
-    it.skip('should use #exit on non-zero code', function() {
+    it('should do nothing on zero code', function() {
+      this.ib.exitOnShelljsErr({code: 0});
+      this.exitStub.should.not.have.been.called;
+    });
+
+    it('should use #exit on non-zero code', function() {
+      this.ib.exitOnShelljsErr({code: 2, output: this.msg});
+      this.exitStub.should.have.been.calledWithExactly(this.msg, 2);
     });
   });
 });
