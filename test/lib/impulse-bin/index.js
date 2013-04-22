@@ -12,19 +12,38 @@ require('sinon-doublist')(sinon, 'mocha');
 describe('ImpulseBin', function() {
   beforeEach(function() {
     this.ib = impulseBin.create();
+
+    this.options = {fakeKey: 'fakeVal'};
+    this.args = ['fakeArg'];
+    this.adapter = this.stubMany({}, ['options', 'args']);
+    this.adapter.args.returns(this.args);
+    this.adapter.options.returns(this.options);
+    this.loadAdapterStub = this.stub(this.ib, 'loadAdapter');
+    this.loadAdapterStub.returns(this.adapter);
+
+    this.provider = require('commander');
+    this.handler = this.spy();
   });
 
   describe('#run', function() {
-    it.skip('should store ref to adapter', function() {
+    beforeEach(function() {
+      this.ib.run(this.provider, this.handler);
     });
 
-    it.skip('should store ref to provider', function() {
+    it('should store ref to adapter', function() {
+      this.ib.adapter.should.deep.equal(this.adapter);
     });
 
-    it.skip('should extract options with adapter', function() {
+    it('should store ref to provider', function() {
+      this.ib.provider.should.deep.equal(this.provider);
     });
 
-    it.skip('should extract args with adapter', function() {
+    it('should extract options with adapter', function() {
+      this.ib.options.should.deep.equal(this.options);
+    });
+
+    it('should extract args with adapter', function() {
+      this.handler.thisValues[0].args.should.deep.equal(this.args);
     });
 
     it.skip('should optionally silence loggers', function() {
