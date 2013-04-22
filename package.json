@@ -30,7 +30,8 @@
     "sinon": "~1.6.0",
     "sinon-chai": "~2.3.1",
     "sinon-doublist": "~0.3.0",
-    "commander": "~1.1.1"
+    "commander": "~1.1.1",
+    "optimist": "~0.4.0"
   },
   "scripts": {
     "test": "grunt test"

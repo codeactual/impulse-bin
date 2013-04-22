@@ -43,4 +43,21 @@ describe('adapter for', function() {
       actual.bar.should.equal(this.options.bar);
     });
   });
+
+  describe('optimist', function() {
+    beforeEach(function() {
+      this.provider = require('optimist').argv;
+      this.adapter = require('../../lib/adapter/optimist');
+    });
+
+    it('should extract args', function() {
+      this.adapter.args(this.provider).should.deep.equal(this.args);
+    });
+
+    it('should extract options', function() {
+      var actual = this.adapter.options(this.provider);
+      actual.foo.should.equal(this.options.foo);
+      actual.bar.should.equal(this.options.bar);
+    });
+  });
 });
