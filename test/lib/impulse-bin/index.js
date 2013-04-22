@@ -21,6 +21,9 @@ describe('ImpulseBin', function() {
     this.loadAdapterStub = this.stub(this.ib, 'loadAdapter');
     this.loadAdapterStub.returns(this.adapter);
 
+    this.createConsoleStub = this.stub(this.ib.console, 'create');
+    this.createVerboseStub = this.stub(this.ib, 'createVerbose');
+
     this.provider = require('commander');
     this.handler = this.spy();
   });
@@ -46,16 +49,36 @@ describe('ImpulseBin', function() {
       this.handler.thisValues[0].args.should.deep.equal(this.args);
     });
 
-    it.skip('should optionally silence loggers', function() {
+    it('should not silence loggers by default', function() {
+      should.not.exist(this.ib.console.get('quiet'));
     });
 
-    it.skip('should init stdout logger', function() {
+    it('should optionally silence loggers', function() {
+      this.options.stayQuiet = true;
+      this.ib.set('quietOption', 'stayQuiet');
+      this.ib.run(this.provider, this.handler);
+      this.ib.console.get('quiet').should.equal(true);
     });
 
-    it.skip('should init stderr logger', function() {
+    it('should init stderr logger', function() {
+      var logger = {iAmA: 'stderr logger'};
+      this.createConsoleStub.withArgs('[stderr]').returns(logger);
+      this.ib.run(this.provider, this.handler);
+      this.ib.stderr.should.deep.equal(logger);
     });
 
-    it.skip('should init verbose logger', function() {
+    it('should init stdout logger', function() {
+      var logger = {iAmA: 'stdout logger'};
+      this.createConsoleStub.withArgs('[stdout]').returns(logger);
+      this.ib.run(this.provider, this.handler);
+      this.ib.stdout.should.deep.equal(logger);
+    });
+
+    it('should init verbose logger', function() {
+      var logger = {iAmA: 'verbose logger'};
+      this.ib.createVerbose.returns(logger);
+      this.ib.run(this.provider, this.handler);
+      this.ib.verbose.should.deep.equal(logger);
     });
 
     describe('injected context', function() {
