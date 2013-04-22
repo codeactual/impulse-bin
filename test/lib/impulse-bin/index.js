@@ -1,3 +1,4 @@
+/*jshint expr:true*/
 var sinon = require('sinon');
 var chai = require('chai');
 
@@ -23,6 +24,9 @@ describe('ImpulseBin', function() {
 
     this.createConsoleStub = this.stub(this.ib.console, 'create');
     this.createVerboseStub = this.stub(this.ib, 'createVerbose');
+    this.exitStub = this.stub(this.ib, 'exit');
+    this.exitOnMissingOptionStub = this.stub(this.ib, 'exitOnMissingOption');
+    this.exitOnShelljsErrStub = this.stub(this.ib, 'exitOnShelljsErr');
 
     this.provider = require('commander');
     this.handler = this.spy();
@@ -37,16 +41,12 @@ describe('ImpulseBin', function() {
       this.ib.adapter.should.deep.equal(this.adapter);
     });
 
-    it('should store ref to provider', function() {
-      this.ib.provider.should.deep.equal(this.provider);
-    });
-
-    it('should extract options with adapter', function() {
+    it('should store ref to extracted options', function() {
       this.ib.options.should.deep.equal(this.options);
     });
 
-    it('should extract args with adapter', function() {
-      this.handler.thisValues[0].args.should.deep.equal(this.args);
+    it('should store ref to provider', function() {
+      this.ib.provider.should.deep.equal(this.provider);
     });
 
     it('should not silence loggers by default', function() {
@@ -82,40 +82,65 @@ describe('ImpulseBin', function() {
     });
 
     describe('injected context', function() {
-      it.skip('should include extracted args', function() {
+      it('should include extracted args', function() {
+        this.handler.thisValues[0].args.should.deep.equal(this.args);
       });
 
-      it.skip('should include child_process', function() {
+      it('should include child_process', function() {
+        this.handler.thisValues[0].child_process.should.deep.equal(
+          require('child_process')
+        );
       });
 
-      it.skip('should include cli-color', function() {
+      it('should include cli-color', function() {
+        this.handler.thisValues[0].clc.should.deep.equal(
+          require('cli-color')
+        );
       });
 
-      it.skip('should include fs', function() {
+      it('should include fs', function() {
+        this.handler.thisValues[0].fs.should.deep.equal(require('fs'));
       });
 
-      it.skip('should include extracted options', function() {
+      it('should include extracted options', function() {
+        this.handler.thisValues[0].options.should.deep.equal(this.options);
       });
 
-      it.skip('should include provider', function() {
+      it('should include provider', function() {
+        this.ib.options.should.deep.equal(this.options);
       });
 
-      it.skip('should include OuterShelljs', function() {
+      it('should include OuterShelljs', function() {
+        var OuterShelljs = require('outer-shelljs').OuterShelljs;
+        this.handler.thisValues[0].shelljs.should.be.an.instanceOf(OuterShelljs);
       });
 
-      it.skip('should include util', function() {
+      it('should include util', function() {
+        this.handler.thisValues[0].util.should.deep.equal(require('util'));
       });
 
-      it.skip('should include #createVerbose mixin', function() {
+      it('should include #createVerbose mixin', function() {
+        this.createVerboseStub.should.have.been.calledOnce;
+        this.handler.thisValues[0].createVerbose();
+        this.createVerboseStub.should.have.been.calledTwice;
       });
 
-      it.skip('should include #exit mixin', function() {
+      it('should include #exit mixin', function() {
+        this.handler.thisValues[0].exit();
+        this.exitStub.should.have.been.called;
       });
 
-      it.skip('should include #exitOnMissingOption mixin', function() {
+      it('should include #exitOnMissingOption mixin', function() {
+        this.handler.thisValues[0].exitOnMissingOption('config', 5);
+        this.exitOnMissingOptionStub.should.have.been.calledWithExactly('config', 5);
+        this.exitOnMissingOptionStub.should.have.been.calledOn(this.ib);
       });
 
-      it.skip('should include #exitOnShelljsErr mixin', function() {
+      it('should include #exitOnShelljsErr mixin', function() {
+        var res = {iAma: 'shelljs result'};
+        this.handler.thisValues[0].exitOnShelljsErr(res);
+        this.exitOnShelljsErrStub.should.have.been.calledWithExactly(res);
+        this.exitOnShelljsErrStub.should.have.been.calledOn(this.ib);
       });
     });
   });
