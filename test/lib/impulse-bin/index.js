@@ -12,21 +12,21 @@ require('sinon-doublist')(sinon, 'mocha');
 
 describe('ImpulseBin', function() {
   beforeEach(function() {
-    this.ib = impulseBin.create();
+    this.bin = impulseBin.create();
 
     this.options = {fakeKey: 'fakeVal'};
     this.args = ['fakeArg'];
     this.adapter = this.stubMany({}, ['options', 'args']);
     this.adapter.args.returns(this.args);
     this.adapter.options.returns(this.options);
-    this.loadAdapterStub = this.stub(this.ib, 'loadAdapter');
+    this.loadAdapterStub = this.stub(this.bin, 'loadAdapter');
     this.loadAdapterStub.returns(this.adapter);
 
-    this.createConsoleStub = this.stub(this.ib.console, 'create');
-    this.createVerboseStub = this.stub(this.ib, 'createVerbose');
-    this.exitStub = this.stub(this.ib, 'exit');
-    this.exitOnMissingOptionStub = this.stub(this.ib, 'exitOnMissingOption');
-    this.exitOnShelljsErrStub = this.stub(this.ib, 'exitOnShelljsErr');
+    this.createConsoleStub = this.stub(this.bin.console, 'create');
+    this.createVerboseStub = this.stub(this.bin, 'createVerbose');
+    this.exitStub = this.stub(this.bin, 'exit');
+    this.exitOnMissingOptionStub = this.stub(this.bin, 'exitOnMissingOption');
+    this.exitOnShelljsErrStub = this.stub(this.bin, 'exitOnShelljsErr');
 
     this.verboseLogger = function() {};
     this.createVerboseStub.returns(this.verboseLogger);
@@ -37,49 +37,49 @@ describe('ImpulseBin', function() {
 
   describe('#run', function() {
     beforeEach(function() {
-      this.ib.run(this.provider, this.handler);
+      this.bin.run(this.provider, this.handler);
     });
 
     it('should store ref to adapter', function() {
-      this.ib.adapter.should.deep.equal(this.adapter);
+      this.bin.adapter.should.deep.equal(this.adapter);
     });
 
     it('should store ref to extracted options', function() {
-      this.ib.options.should.deep.equal(this.options);
+      this.bin.options.should.deep.equal(this.options);
     });
 
     it('should store ref to provider', function() {
-      this.ib.provider.should.deep.equal(this.provider);
+      this.bin.provider.should.deep.equal(this.provider);
     });
 
     it('should not silence loggers by default', function() {
-      should.not.exist(this.ib.console.get('quiet'));
+      should.not.exist(this.bin.console.get('quiet'));
     });
 
     it('should optionally silence loggers', function() {
       this.options.stayQuiet = true;
-      this.ib.set('quietOption', 'stayQuiet');
-      this.ib.run(this.provider, this.handler);
-      this.ib.console.get('quiet').should.equal(true);
+      this.bin.set('quietOption', 'stayQuiet');
+      this.bin.run(this.provider, this.handler);
+      this.bin.console.get('quiet').should.equal(true);
     });
 
     it('should init stderr logger', function() {
       var logger = {iAmA: 'stderr logger'};
       this.createConsoleStub.withArgs('[stderr]').returns(logger);
-      this.ib.run(this.provider, this.handler);
-      this.ib.stderr.should.deep.equal(logger);
+      this.bin.run(this.provider, this.handler);
+      this.bin.stderr.should.deep.equal(logger);
     });
 
     it('should init stdout logger', function() {
       var logger = {iAmA: 'stdout logger'};
       this.createConsoleStub.withArgs('[stdout]').returns(logger);
-      this.ib.run(this.provider, this.handler);
-      this.ib.stdout.should.deep.equal(logger);
+      this.bin.run(this.provider, this.handler);
+      this.bin.stdout.should.deep.equal(logger);
     });
 
     it('should init verbose logger', function() {
-      this.ib.run(this.provider, this.handler);
-      this.ib.verbose.should.deep.equal(this.verboseLogger);
+      this.bin.run(this.provider, this.handler);
+      this.bin.verbose.should.deep.equal(this.verboseLogger);
     });
 
     describe('injected context', function() {
@@ -108,7 +108,7 @@ describe('ImpulseBin', function() {
       });
 
       it('should include provider', function() {
-        this.ib.options.should.deep.equal(this.options);
+        this.bin.options.should.deep.equal(this.options);
       });
 
       it('should include OuterShelljs', function() {
@@ -129,111 +129,111 @@ describe('ImpulseBin', function() {
       it('should include #exit mixin', function() {
         this.handler.thisValues[0].exit('err', 2);
         this.exitStub.should.have.been.calledWithExactly('err', 2);
-        this.exitStub.should.have.been.calledOn(this.ib);
+        this.exitStub.should.have.been.calledOn(this.bin);
       });
 
       it('should include #exitOnMissingOption mixin', function() {
         this.handler.thisValues[0].exitOnMissingOption('config', 5);
         this.exitOnMissingOptionStub.should.have.been.calledWithExactly('config', 5);
-        this.exitOnMissingOptionStub.should.have.been.calledOn(this.ib);
+        this.exitOnMissingOptionStub.should.have.been.calledOn(this.bin);
       });
 
       it('should include #exitOnShelljsErr mixin', function() {
         var res = {iAma: 'shelljs result'};
         this.handler.thisValues[0].exitOnShelljsErr(res);
         this.exitOnShelljsErrStub.should.have.been.calledWithExactly(res);
-        this.exitOnShelljsErrStub.should.have.been.calledOn(this.ib);
+        this.exitOnShelljsErrStub.should.have.been.calledOn(this.bin);
       });
     });
   });
 
   describe('#createVerbose', function() {
     beforeEach(function() {
-      this.ib.createVerbose.restore();
-      this.ib.run(this.provider, this.handler);
+      this.bin.createVerbose.restore();
+      this.bin.run(this.provider, this.handler);
       this.name = 'verbose';
     });
 
     it('should return no-op by default', function() {
-      this.ib.createVerbose(this.name).should.be.a('function');
+      this.bin.createVerbose(this.name).should.be.a('function');
       this.createConsoleStub.callCount.should.equal(2); // Only stdout/stderr in run()
     });
 
     it('should optionally return logger', function() {
       this.options.verbose = true;
       this.createConsoleStub.returns(this.verboseLogger);
-      this.ib.createVerbose(this.name).should.deep.equal(this.verboseLogger);
+      this.bin.createVerbose(this.name).should.deep.equal(this.verboseLogger);
     });
 
     it('should use optional logger name', function() {
       this.options.showVerbose = true;
-      this.ib.set('verboseOption', 'showVerbose');
+      this.bin.set('verboseOption', 'showVerbose');
       this.createConsoleStub.returns(this.verboseLogger);
-      this.ib.createVerbose(this.name).should.deep.equal(this.verboseLogger);
+      this.bin.createVerbose(this.name).should.deep.equal(this.verboseLogger);
     });
   });
 
   describe('#exit', function() {
     beforeEach(function() {
-      this.ib.exit.restore();
+      this.bin.exit.restore();
       this.createConsoleStub.returns(function() {});
-      this.ib.run(this.provider, this.handler);
+      this.bin.run(this.provider, this.handler);
       this.procExitStub = this.stub(process, 'exit');
       this.msg = 'reason';
     });
 
     it('should output message to stderr', function() {
-      var stub = this.stub(this.ib, 'stderr');
-      this.ib.exit(this.msg);
+      var stub = this.stub(this.bin, 'stderr');
+      this.bin.exit(this.msg);
       stub.should.have.been.calledWithExactly(this.msg);
     });
 
     it('should exit process with default code', function() {
-      this.ib.exit(this.msg);
+      this.bin.exit(this.msg);
       this.procExitStub.should.have.been.calledWithExactly(1);
     });
 
     it('should exit process with optional code', function() {
-      this.ib.exit(this.msg, 2);
+      this.bin.exit(this.msg, 2);
       this.procExitStub.should.have.been.calledWithExactly(2);
     });
   });
 
   describe('#exitOnMissingOption', function() {
     beforeEach(function() {
-      this.ib.exitOnMissingOption.restore();
-      this.ib.run(this.provider, this.handler);
+      this.bin.exitOnMissingOption.restore();
+      this.bin.run(this.provider, this.handler);
     });
 
     it('should use #exit', function() {
-      this.ib.exitOnMissingOption('fakeKey', 2);
+      this.bin.exitOnMissingOption('fakeKey', 2);
       this.exitStub.should.not.have.been.called;
 
-      this.ib.exitOnMissingOption('notPresent', 2);
+      this.bin.exitOnMissingOption('notPresent', 2);
       this.exitStub.should.have.been.calledWithExactly('--notPresent is required', 2);
     });
 
     it('should use accept array', function() {
-      this.ib.exitOnMissingOption(['fakeKey'], 2);
+      this.bin.exitOnMissingOption(['fakeKey'], 2);
       this.exitStub.should.not.have.been.called;
 
-      this.ib.exitOnMissingOption(['fakeKey', 'notPresent'], 2);
+      this.bin.exitOnMissingOption(['fakeKey', 'notPresent'], 2);
       this.exitStub.should.have.been.calledWithExactly('--notPresent is required', 2);
     });
   });
 
   describe('#exitOnShelljsErr', function() {
     beforeEach(function() {
-      this.ib.exitOnShelljsErr.restore();
+      this.bin.exitOnShelljsErr.restore();
     });
 
     it('should do nothing on zero code', function() {
-      this.ib.exitOnShelljsErr({code: 0});
+      this.bin.exitOnShelljsErr({code: 0});
       this.exitStub.should.not.have.been.called;
     });
 
     it('should use #exit on non-zero code', function() {
-      this.ib.exitOnShelljsErr({code: 2, output: this.msg});
+      this.bin.exitOnShelljsErr({code: 2, output: this.msg});
       this.exitStub.should.have.been.calledWithExactly(this.msg, 2);
     });
   });
