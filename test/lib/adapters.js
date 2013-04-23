@@ -28,7 +28,7 @@ describe('adapter for', function() {
     beforeEach(function() {
       var commander = require('commander');
       commander.option('--foo <#>', '', Number).option('--bar <#>', '', Number);
-      this.provider = commander.parse(process.argv);
+      this.provider = commander;
       this.adapter = require('../../lib/adapter/commander');
     });
 
