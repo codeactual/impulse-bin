@@ -45,7 +45,7 @@ describe('adapter for', function() {
 
   describe('optimist', function() {
     beforeEach(function() {
-      this.provider = require('optimist').argv;
+      this.provider = require('optimist');
       this.adapter = require('../../lib/adapter/optimist');
     });
 
