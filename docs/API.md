@@ -24,7 +24,7 @@
 ```
 
   
-   Configuration:
+  Configuration:
   
    - `{string} [adapter='commander]` Valid name of adapter in `./lib/adapter/`
    - `{string} [quietOption='quiet']` Silence all loggers on `--quiet`
@@ -34,7 +34,7 @@
    - `{string} [stdoutLogName='[stdout]']` Prepended to each message
    - `{string} [stderrLogName='[stderr]']` Prepended to each message
   
-   Properties:
+  Properties:
   
    - `{object} adapter` Ex. `require('./lib/adapter/commander')`
    - `{object} console` long-con instance
