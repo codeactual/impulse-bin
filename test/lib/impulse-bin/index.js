@@ -29,7 +29,7 @@ describe('ImpulseBin', function() {
     this.exitOnShelljsErrStub = this.stub(this.bin, 'exitOnShelljsErr');
 
     this.verboseLogger = function() {};
-    this.createVerboseStub.returns(this.verboseLogger);
+    this.createVerboseStub.withArgs(console.log).returns(this.verboseLogger);
 
     this.provider = require('commander');
     this.handler = this.spy();
@@ -158,22 +158,30 @@ describe('ImpulseBin', function() {
       this.name = 'verbose';
     });
 
+    it('should use LongCon#create', function() {
+      this.options.verbose = true;
+      var logger = this.bin.createVerbose(console.error, 'red');
+      this.createConsoleStub.should.have.been.calledWithExactly(
+        '[verbose]', console.error, 'red'
+      );
+    });
+
     it('should return no-op by default', function() {
-      this.bin.createVerbose(this.name).should.be.a('function');
+      this.bin.createVerbose().should.be.a('function');
       this.createConsoleStub.callCount.should.equal(2); // Only stdout/stderr in run()
     });
 
     it('should optionally return logger', function() {
       this.options.verbose = true;
       this.createConsoleStub.returns(this.verboseLogger);
-      this.bin.createVerbose(this.name).should.deep.equal(this.verboseLogger);
+      this.bin.createVerbose().should.deep.equal(this.verboseLogger);
     });
 
     it('should use optional logger name', function() {
       this.options.showVerbose = true;
       this.bin.set('verboseOption', 'showVerbose');
       this.createConsoleStub.returns(this.verboseLogger);
-      this.bin.createVerbose(this.name).should.deep.equal(this.verboseLogger);
+      this.bin.createVerbose().should.deep.equal(this.verboseLogger);
     });
   });
 
