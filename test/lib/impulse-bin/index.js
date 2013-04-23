@@ -93,6 +93,10 @@ describe('ImpulseBin', function() {
         );
       });
 
+      it('should include console', function() {
+        this.handler.thisValues[0].console.should.deep.equal(this.bin.console);
+      });
+
       it('should include cli-color', function() {
         this.handler.thisValues[0].clc.should.deep.equal(
           require('cli-color')
