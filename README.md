@@ -1,6 +1,9 @@
 # impulse-bin
 
-Modules for commander.js
+`bin/` script module loader
+
+* Injects utilities for terminal colors, logging, ShellJS, etc.
+* Adapters for commander.js and optimist
 
 [![Build Status](https://travis-ci.org/codeactual/impulse-bin.png)](https://travis-ci.org/codeactual/impulse-bin)
 
@@ -11,43 +14,71 @@ Modules for commander.js
 
 ## Example
 
-```js
-// ./bin/cli
-var ci = require('impulse-bin').create();
-ci.run(commander, require('./path/to/my/module'));
+### `bin/myproj`
 
-// ./lib/cli/index.js
-module.exports = {cli: cli};
-function cli() {
-  this.exitOnMissingOption(this.input, ['config']);
+```js
+var bin = require('impulse-bin').create();
+bin.run(optimist, require('./lib/cli/myproj'));
+```
+
+### `lib/cli/myproj.js`
+
+```js
+module.exports = function() {
+  this.exitOnMissingOption(['config']);
+
+  if (!this.shelljs._('test', '-f', this.options.config)) {
+    this.stderr('config file not found: %s', this.options.config);
+  }
+
+  this.stdout('using config file: %s', this.clc.green(this.options.config));
 
   // ...
-
-  this.promise.resolve();
 }
 ```
 
 ## Installation
 
-### [NPM](https://npmjs.org/package/codeactual-impulse-bin)
+### [NPM](https://npmjs.org/package/impulse-bin)
 
-    npm install codeactual-impulse-bin
+    npm install impulse-bin
 
-## Handler API
+## Handler Function API
 
-```js
-  this.stderr = this.createConsole('stderr', console.error, this.clc.red);
-  this.stdout = this.createConsole('stdout', console.log);
-  this.verbose = this.createConsole('verbose', util.debug);
-```
+### Properties available via `this`
 
-## Module API
+* `{object} provider`: commander.js, optimist, etc.
 
-[Documentation](API.md)
+CLI input:
 
-### [method]
+* `{array} args`
+* `{object} options`
 
-> [method desc]
+Modules:
+
+* `{object} child_process`
+* `{object} console`: [long-con](https://github.com/codeactual/long-con)
+* `{object} clc`: [cli-color](https://github.com/medikoo/cli-color)
+* `{object} fs`
+* `{object} shelljs`: [outer-shelljs](https://github.com/codeactual/outer-shelljs)
+* `{object} util`
+
+Logging:
+
+* `{function} createVerbose`: [mixin](docs/API.md)
+* `{function} stderr`: [long-con logger](https://github.com/codeactual/long-con/docs/API.md)
+* `{function} stdout`: [long-con logger](https://github.com/codeactual/long-con/docs/API.md
+* `{function} verbose`: `console.log` wrapper made by `createVerbose()`
+
+Process:
+
+* `{function} exit`: [mixin](docs/API.md)
+* `{function} exitOnMissingOption`: [mixin](docs/API.md)
+* `{function} exitOnShelljsErr`: [mixin](docs/API.md)
+
+## ImpulseBin API
+
+[Documentation](docs/API.md)
 
 ## License
 
