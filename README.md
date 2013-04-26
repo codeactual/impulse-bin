@@ -18,13 +18,17 @@
 
 ```js
 var bin = require('impulse-bin').create();
-bin.run(optimist, require('./lib/cli/myproj'));
+bin.run(require('commander'), require('./lib/cli/myproj'));
 ```
 
 ### `lib/cli/myproj.js`
 
 ```js
-module.exports = function() {
+exports.init = function(provider) {
+  provider.option('-c, --config <dir>', 'Config file');
+};
+
+exports.run = function() {
   this.exitOnMissingOption(['config']);
 
   if (!this.shelljs._('test', '-f', this.options.config)) {
@@ -34,7 +38,7 @@ module.exports = function() {
   this.stdout('using config file: %s', this.clc.green(this.options.config));
 
   // ...
-}
+};
 ```
 
 ## Installation
