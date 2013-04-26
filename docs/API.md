@@ -8,7 +8,7 @@
 
 ## ImpulseBin()
 
-  Usage:
+  ImpulseBin constructor.
   
 ```js
   var bin = require('impulse-bin').create(); // new ImpulseBin() instance

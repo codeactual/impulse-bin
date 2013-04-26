@@ -36,6 +36,12 @@ describe('adapter for', function() {
       this.adapter.args(this.provider).should.deep.equal(this.args);
     });
 
+    it('should show help', function() {
+      var stub = this.stub(this.provider, 'outputHelp');
+      this.adapter.help(this.provider);
+      stub.should.have.been.called;
+    });
+
     it('should extract options', function() {
       var actual = this.adapter.options(this.provider);
       actual.foo.should.equal(this.options.foo);
@@ -51,6 +57,12 @@ describe('adapter for', function() {
 
     it('should extract args', function() {
       this.adapter.args(this.provider).should.deep.equal(this.args);
+    });
+
+    it('should show help', function() {
+      var stub = this.stub(this.provider, 'showHelp');
+      this.adapter.help(this.provider);
+      stub.should.have.been.called;
     });
 
     it('should extract options', function() {

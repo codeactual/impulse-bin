@@ -208,6 +208,20 @@
           "version": "2.3.1",
           "from": "sinon-chai@2.3.1"
         },
+        "dox": {
+          "version": "0.4.3",
+          "from": "dox@",
+          "dependencies": {
+            "github-flavored-markdown": {
+              "version": "1.0.1",
+              "from": "github-flavored-markdown@>= 0.0.1"
+            },
+            "commander": {
+              "version": "0.6.1",
+              "from": "commander@0.6.1"
+            }
+          }
+        },
         "mocha": {
           "version": "1.9.0",
           "from": "mocha@1.9.0",
@@ -1240,6 +1254,69 @@
                 }
               }
             },
+            "grunt-contrib-jshint": {
+              "version": "0.4.3",
+              "from": "grunt-contrib-jshint@~0.4.3",
+              "dependencies": {
+                "jshint": {
+                  "version": "1.1.0",
+                  "from": "jshint@~1.1.0",
+                  "dependencies": {
+                    "esprima": {
+                      "version": "1.1.0-dev",
+                      "from": "https://github.com/ariya/esprima/tarball/master",
+                      "resolved": "https://github.com/ariya/esprima/tarball/master"
+                    },
+                    "shelljs": {
+                      "version": "0.1.2",
+                      "from": "shelljs@0.1.x"
+                    },
+                    "underscore": {
+                      "version": "1.4.4",
+                      "from": "underscore@1.4.x"
+                    },
+                    "peakle": {
+                      "version": "0.0.1",
+                      "from": "peakle@0.0.x"
+                    },
+                    "cli": {
+                      "version": "0.4.4-2",
+                      "from": "cli@0.4.x",
+                      "dependencies": {
+                        "glob": {
+                          "version": "3.1.21",
+                          "from": "glob@>= 3.1.4",
+                          "dependencies": {
+                            "graceful-fs": {
+                              "version": "1.2.0",
+                              "from": "graceful-fs@~1.2.0"
+                            },
+                            "inherits": {
+                              "version": "1.0.0",
+                              "from": "inherits@1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "minimatch": {
+                      "version": "0.2.11",
+                      "from": "minimatch@0.x.x",
+                      "dependencies": {
+                        "lru-cache": {
+                          "version": "2.3.0",
+                          "from": "lru-cache@2"
+                        },
+                        "sigmund": {
+                          "version": "1.0.0",
+                          "from": "sigmund@~1.0.0"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "component": {
               "version": "0.13.2",
               "from": "component@~0.13.2",
@@ -1381,69 +1458,6 @@
                   "from": "debug@*"
                 }
               }
-            },
-            "grunt-contrib-jshint": {
-              "version": "0.4.3",
-              "from": "grunt-contrib-jshint@~0.4.3",
-              "dependencies": {
-                "jshint": {
-                  "version": "1.1.0",
-                  "from": "jshint@~1.1.0",
-                  "dependencies": {
-                    "esprima": {
-                      "version": "1.1.0-dev",
-                      "from": "https://github.com/ariya/esprima/tarball/master",
-                      "resolved": "https://github.com/ariya/esprima/tarball/master"
-                    },
-                    "shelljs": {
-                      "version": "0.1.2",
-                      "from": "shelljs@0.1.x"
-                    },
-                    "underscore": {
-                      "version": "1.4.4",
-                      "from": "underscore@1.4.x"
-                    },
-                    "peakle": {
-                      "version": "0.0.1",
-                      "from": "peakle@0.0.x"
-                    },
-                    "cli": {
-                      "version": "0.4.4-2",
-                      "from": "cli@0.4.x",
-                      "dependencies": {
-                        "glob": {
-                          "version": "3.1.21",
-                          "from": "glob@>= 3.1.4",
-                          "dependencies": {
-                            "graceful-fs": {
-                              "version": "1.2.0",
-                              "from": "graceful-fs@~1.2.0"
-                            },
-                            "inherits": {
-                              "version": "1.0.0",
-                              "from": "inherits@1"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "minimatch": {
-                      "version": "0.2.11",
-                      "from": "minimatch@0.x.x",
-                      "dependencies": {
-                        "lru-cache": {
-                          "version": "2.3.0",
-                          "from": "lru-cache@2"
-                        },
-                        "sigmund": {
-                          "version": "1.0.0",
-                          "from": "sigmund@~1.0.0"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -1502,25 +1516,6 @@
         }
       }
     },
-    "sinon": {
-      "version": "1.6.0",
-      "from": "sinon@1.6.0",
-      "resolved": "https://registry.npmjs.org/sinon/-/sinon-1.6.0.tgz",
-      "dependencies": {
-        "buster-format": {
-          "version": "0.5.5",
-          "from": "buster-format@0.5.5",
-          "resolved": "https://registry.npmjs.org/buster-format/-/buster-format-0.5.5.tgz",
-          "dependencies": {
-            "buster-core": {
-              "version": "0.6.4",
-              "from": "buster-core@0.6.4",
-              "resolved": "https://registry.npmjs.org/buster-core/-/buster-core-0.6.4.tgz"
-            }
-          }
-        }
-      }
-    },
     "mocha": {
       "version": "1.9.0",
       "from": "mocha@1.9.0",
@@ -1558,6 +1553,25 @@
         "ms": {
           "version": "0.3.0",
           "from": "ms@0.3.0"
+        }
+      }
+    },
+    "sinon": {
+      "version": "1.6.0",
+      "from": "sinon@1.6.0",
+      "resolved": "https://registry.npmjs.org/sinon/-/sinon-1.6.0.tgz",
+      "dependencies": {
+        "buster-format": {
+          "version": "0.5.5",
+          "from": "buster-format@0.5.5",
+          "resolved": "https://registry.npmjs.org/buster-format/-/buster-format-0.5.5.tgz",
+          "dependencies": {
+            "buster-core": {
+              "version": "0.6.4",
+              "from": "buster-core@0.6.4",
+              "resolved": "https://registry.npmjs.org/buster-core/-/buster-core-0.6.4.tgz"
+            }
+          }
         }
       }
     },

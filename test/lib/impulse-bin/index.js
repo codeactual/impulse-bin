@@ -16,7 +16,7 @@ describe('ImpulseBin', function() {
 
     this.options = {fakeKey: 'fakeVal'};
     this.args = ['fakeArg'];
-    this.adapter = this.stubMany({}, ['options', 'args']);
+    this.adapter = this.stubMany({}, ['args', 'help', 'options']);
     this.adapter.args.returns(this.args);
     this.adapter.options.returns(this.options);
     this.loadAdapterStub = this.stub(this.bin, 'loadAdapter');
@@ -215,6 +215,11 @@ describe('ImpulseBin', function() {
     beforeEach(function() {
       this.bin.exitOnMissingOption.restore();
       this.bin.run(this.provider, this.handler);
+    });
+
+    it('should show help content', function() {
+      this.bin.exitOnMissingOption('notPresent');
+      this.adapter.help.should.have.been.calledWithExactly(this.provider);
     });
 
     it('should use #exit', function() {
