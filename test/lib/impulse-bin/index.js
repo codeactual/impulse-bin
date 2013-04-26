@@ -32,7 +32,10 @@ describe('ImpulseBin', function() {
     this.createVerboseStub.withArgs(console.log).returns(this.verboseLogger);
 
     this.provider = require('commander');
-    this.handler = this.spy();
+    this.handler = {
+      init: this.spy(),
+      run: this.spy()
+    };
   });
 
   describe('#run', function() {
@@ -42,6 +45,10 @@ describe('ImpulseBin', function() {
 
     it('should store ref to adapter', function() {
       this.bin.adapter.should.deep.equal(this.adapter);
+    });
+
+    it('should run handler init', function() {
+      this.handler.init.should.have.been.calledWithExactly(this.provider);
     });
 
     it('should store ref to extracted options', function() {
@@ -84,31 +91,31 @@ describe('ImpulseBin', function() {
 
     describe('injected context', function() {
       it('should include extracted args', function() {
-        this.handler.thisValues[0].args.should.deep.equal(this.args);
+        this.handler.run.thisValues[0].args.should.deep.equal(this.args);
       });
 
       it('should include child_process', function() {
-        this.handler.thisValues[0].child_process.should.deep.equal(
+        this.handler.run.thisValues[0].child_process.should.deep.equal(
           require('child_process')
         );
       });
 
       it('should include console', function() {
-        this.handler.thisValues[0].console.should.deep.equal(this.bin.console);
+        this.handler.run.thisValues[0].console.should.deep.equal(this.bin.console);
       });
 
       it('should include cli-color', function() {
-        this.handler.thisValues[0].clc.should.deep.equal(
+        this.handler.run.thisValues[0].clc.should.deep.equal(
           require('cli-color')
         );
       });
 
       it('should include fs', function() {
-        this.handler.thisValues[0].fs.should.deep.equal(require('fs'));
+        this.handler.run.thisValues[0].fs.should.deep.equal(require('fs'));
       });
 
       it('should include extracted options', function() {
-        this.handler.thisValues[0].options.should.deep.equal(this.options);
+        this.handler.run.thisValues[0].options.should.deep.equal(this.options);
       });
 
       it('should include provider', function() {
@@ -117,34 +124,34 @@ describe('ImpulseBin', function() {
 
       it('should include OuterShelljs', function() {
         var OuterShelljs = require('outer-shelljs').OuterShelljs;
-        this.handler.thisValues[0].shelljs.should.be.an.instanceOf(OuterShelljs);
+        this.handler.run.thisValues[0].shelljs.should.be.an.instanceOf(OuterShelljs);
       });
 
       it('should include util', function() {
-        this.handler.thisValues[0].util.should.deep.equal(require('util'));
+        this.handler.run.thisValues[0].util.should.deep.equal(require('util'));
       });
 
       it('should include #createVerbose mixin', function() {
         this.createVerboseStub.should.have.been.calledOnce;
-        this.handler.thisValues[0].createVerbose();
+        this.handler.run.thisValues[0].createVerbose();
         this.createVerboseStub.should.have.been.calledTwice;
       });
 
       it('should include #exit mixin', function() {
-        this.handler.thisValues[0].exit('err', 2);
+        this.handler.run.thisValues[0].exit('err', 2);
         this.exitStub.should.have.been.calledWithExactly('err', 2);
         this.exitStub.should.have.been.calledOn(this.bin);
       });
 
       it('should include #exitOnMissingOption mixin', function() {
-        this.handler.thisValues[0].exitOnMissingOption('config', 5);
+        this.handler.run.thisValues[0].exitOnMissingOption('config', 5);
         this.exitOnMissingOptionStub.should.have.been.calledWithExactly('config', 5);
         this.exitOnMissingOptionStub.should.have.been.calledOn(this.bin);
       });
 
       it('should include #exitOnShelljsErr mixin', function() {
         var res = {iAma: 'shelljs result'};
-        this.handler.thisValues[0].exitOnShelljsErr(res);
+        this.handler.run.thisValues[0].exitOnShelljsErr(res);
         this.exitOnShelljsErrStub.should.have.been.calledWithExactly(res);
         this.exitOnShelljsErrStub.should.have.been.calledOn(this.bin);
       });
