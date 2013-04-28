@@ -61,8 +61,8 @@ CLI input:
 Modules:
 
 * `{object} child_process`
-* `{object} console`: [long-con](https://github.com/codeactual/long-con)
-* `{object} clc`: [cli-color](https://github.com/medikoo/cli-color)
+* `{object} console`: Create custom loggers via [long-con](https://github.com/codeactual/long-con)
+* `{object} clc`: Terminal colors via [cli-color](https://github.com/medikoo/cli-color)
 * `{object} fs`
 * `{object} shelljs`: [outer-shelljs](https://github.com/codeactual/outer-shelljs)
 * `{object} util`
