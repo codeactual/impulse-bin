@@ -82,7 +82,7 @@ Process:
 
 ## ImpulseBin API
 
-[Documentation](docs/API.md)
+[Documentation](ImpulseBin/API.md)
 
 ## License
 
