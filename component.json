@@ -3,7 +3,13 @@
   "repo": "codeactual/impulse-bin",
   "description": "Modules for commander.js and others",
   "version": "0.1.0",
-  "keywords": [],
+  "keywords": [
+    "bin",
+    "bin script",
+    "cli",
+    "cli script",
+    "module"
+  ],
   "dependencies": {
     "visionmedia/configurable.js": "f87ca5f",
     "codeactual/extend": "0.1.0",

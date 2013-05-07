@@ -3,7 +3,13 @@
   "description": "Modules for commander.js and others",
   "version": "0.1.0",
   "main": "index.js",
-  "keywords": [],
+  "keywords": [
+    "bin",
+    "bin script",
+    "cli",
+    "cli script",
+    "module"
+  ],
   "contributors": [
     {
       "name": "David Smith",
