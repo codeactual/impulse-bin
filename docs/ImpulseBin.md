@@ -54,20 +54,20 @@ bin
 
 **Configuration:**
 
- - `{string} [adapter='commander]` Valid name of adapter in `./lib/adapter/`
- - `{string} [quietOption='quiet']` Silence all loggers on `--quiet`
- - `{string} [requiredOptionTmpl='--%s is required']` `exitOnMissingOption()` message template
- - `{string} [verboseOption='verbose']` Enable verbose logger on `--verbose`
- - `{string} [verboseLogName='[verbose]']` Prepended to each message
- - `{string} [stdoutLogName='[stdout]']` Prepended to each message
- - `{string} [stderrLogName='[stderr]']` Prepended to each message
+- `{string} [adapter='commander]` Valid name of adapter in `./lib/adapter/`
+- `{string} [quietOption='quiet']` Silence all loggers on `--quiet`
+- `{string} [requiredOptionTmpl='--%s is required']` `exitOnMissingOption()` message template
+- `{string} [verboseOption='verbose']` Enable verbose logger on `--verbose`
+- `{string} [verboseLogName='[verbose]']` Prepended to each message
+- `{string} [stdoutLogName='[stdout]']` Prepended to each message
+- `{string} [stderrLogName='[stderr]']` Prepended to each message
 
 **Properties:**
 
- - `{object} adapter` Ex. `require('./lib/adapter/commander')`
- - `{object} console` `LongCon` instance
- - `{object} options` CLI options extracted by adapter
- - `{object} provider` commander.js, optimist, etc.
+- `{object} adapter` Ex. `require('./lib/adapter/commander')`
+- `{object} console` `LongCon` instance
+- `{object} options` CLI options extracted by adapter
+- `{object} provider` commander.js, optimist, etc.
 
 **See:**
 
