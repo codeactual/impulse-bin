@@ -1,3 +1,4 @@
 # 0.1.0
 
-* [initial features]
+* Initial API: `run()`, `createVerbose()`, `exit()`, `exitOnMissingOption()`, `exitOnShelljsErr()`.
+* Initial injected dependencies: `child_process`, `fs`, `cli-color`, `shelljs`, `util`.
