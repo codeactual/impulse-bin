@@ -69,16 +69,16 @@ Modules:
 
 Logging:
 
-* `{function} createVerbose`: [mixin](docs/API.md)
-* `{function} stderr`: [long-con logger](https://github.com/codeactual/long-con/docs/API.md)
-* `{function} stdout`: [long-con logger](https://github.com/codeactual/long-con/docs/API.md
+* `{function} createVerbose`: [mixin](docs/ImpulseBin.md)
+* `{function} stderr`: [long-con logger](https://github.com/codeactual/long-con/blog/master/docs/ImpulseBin.md)
+* `{function} stdout`: [long-con logger](https://github.com/codeactual/long-con/blob/master/docs/ImpulseBin.md)
 * `{function} verbose`: `console.log` wrapper made by `createVerbose()`
 
 Process:
 
-* `{function} exit`: [mixin](docs/API.md)
-* `{function} exitOnMissingOption`: [mixin](docs/API.md)
-* `{function} exitOnShelljsErr`: [mixin](docs/API.md)
+* `{function} exit`: [mixin](docs/ImpulseBin.md)
+* `{function} exitOnMissingOption`: [mixin](docs/ImpulseBin.md)
+* `{function} exitOnShelljsErr`: [mixin](docs/ImpulseBin.md)
 
 ## API
 
