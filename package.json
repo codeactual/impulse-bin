@@ -1,7 +1,7 @@
 {
   "name": "impulse-bin",
   "description": "Modules for commander.js and others",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "keywords": [
     "bin",
@@ -27,7 +27,7 @@
   "devDependencies": {
     "chai": "~1.5.0",
     "component": "~0.13.2",
-    "gitemplate-dox": "~0.1.0",
+    "apidox": "~0.2.0",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.0",
@@ -35,7 +35,7 @@
     "mocha": "~1.9.0",
     "sinon": "~1.6.0",
     "sinon-chai": "~2.3.1",
-    "sinon-doublist": "~0.3.0",
+    "sinon-doublist": "~0.3.3",
     "commander": "~1.1.1",
     "optimist": "~0.4.0",
     "dox": "~0.4.3"
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "cli-color": "~0.2.2",
-    "long-con": "~0.1.0",
-    "outer-shelljs": "~0.3.0"
+    "long-con": "~0.1.2",
+    "outer-shelljs": "~0.3.3"
   }
 }
