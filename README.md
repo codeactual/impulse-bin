@@ -70,7 +70,7 @@ Modules:
 Logging:
 
 * `{function} createVerbose`: [mixin](docs/ImpulseBin.md)
-* `{function} stderr`: [long-con logger](https://github.com/codeactual/long-con/blog/master/docs/LongCon.md)
+* `{function} stderr`: [long-con logger](https://github.com/codeactual/long-con/blob/master/docs/LongCon.md)
 * `{function} stdout`: [long-con logger](https://github.com/codeactual/long-con/blob/master/docs/LongCon.md)
 * `{function} verbose`: `console.log` wrapper made by `createVerbose()`
 
