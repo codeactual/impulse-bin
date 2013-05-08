@@ -80,9 +80,9 @@ Process:
 * `{function} exitOnMissingOption`: [mixin](docs/API.md)
 * `{function} exitOnShelljsErr`: [mixin](docs/API.md)
 
-## ImpulseBin API
+## API
 
-[Documentation](ImpulseBin/API.md)
+[Documentation](docs/ImpulseBin.md)
 
 ## License
 
