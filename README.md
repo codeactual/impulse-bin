@@ -2,19 +2,22 @@
 
 `bin/` script module loader
 
-* Injects utilities for terminal colors, logging, ShellJS, etc.
-* Adapters for commander.js and optimist
+* Adapters for [commander.js](https://github.com/visionmedia/commander.js) and [node-optimist](https://github.com/substack/node-optimist)
+* Injects common dependencies like `this.child_process`, `this.shelljs`, etc.
+* Basic set of [long-con](https://github.com/codeactual/long-con) console loggers for stdout/stderr/verbose with [color](https://github.com/medikoo/cli-color)
 
 [![Build Status](https://travis-ci.org/codeactual/impulse-bin.png)](https://travis-ci.org/codeactual/impulse-bin)
 
-## Goals
+## Purpose
 
 * CLI scripts that are easier to test without running the executable.
-* Reduce boilerplate via utility functions and injected dependencies like ShellJS.
+* Reduce boilerplate.
 
 ## Example
 
 ### `bin/myproj`
+
+Executables are reduced to thin loading calls.
 
 ```js
 var bin = require('impulse-bin').create();
@@ -22,6 +25,11 @@ bin.run(require('commander'), require('./lib/cli/myproj'));
 ```
 
 ### `lib/cli/myproj.js`
+
+While the rest is separated into input parsing and input consumption.
+
+* `init()` receives a CLI input `provider` like `commander.js` or `node-optimist` for you to configure.
+* `run()` receives the parsed `this.options` and `this.args` from the `provider`.
 
 ```js
 exports.init = function(provider) {
@@ -47,42 +55,10 @@ exports.run = function() {
 
     npm install impulse-bin
 
-## Handler Function API
+## Documentation
 
-### Properties available via `this`
-
-* `{object} provider`: commander.js, optimist, etc.
-
-CLI input:
-
-* `{array} args`
-* `{object} options`
-
-Modules:
-
-* `{object} child_process`
-* `{object} console`: Create custom loggers via [long-con](https://github.com/codeactual/long-con)
-* `{object} clc`: Terminal colors via [cli-color](https://github.com/medikoo/cli-color)
-* `{object} fs`
-* `{object} shelljs`: [outer-shelljs](https://github.com/codeactual/outer-shelljs)
-* `{object} util`
-
-Logging:
-
-* `{function} createVerbose`: [mixin](docs/ImpulseBin.md)
-* `{function} stderr`: [long-con logger](https://github.com/codeactual/long-con/blob/master/docs/LongCon.md)
-* `{function} stdout`: [long-con logger](https://github.com/codeactual/long-con/blob/master/docs/LongCon.md)
-* `{function} verbose`: `console.log` wrapper made by `createVerbose()`
-
-Process:
-
-* `{function} exit`: [mixin](docs/ImpulseBin.md)
-* `{function} exitOnMissingOption`: [mixin](docs/ImpulseBin.md)
-* `{function} exitOnShelljsErr`: [mixin](docs/ImpulseBin.md)
-
-## API
-
-[Documentation](docs/ImpulseBin.md)
+* [exports.run()](docs/exports-run.md)
+* [API](docs/ImpulseBin.md)
 
 ## License
 
