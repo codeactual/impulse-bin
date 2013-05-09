@@ -1,7 +1,7 @@
 {
   "name": "impulse-bin",
   "repo": "codeactual/impulse-bin",
-  "description": "Modules for commander.js and others",
+  "description": "node.js bin/ script module loader",
   "version": "0.1.2",
   "keywords": [
     "bin",
