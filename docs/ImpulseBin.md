@@ -4,15 +4,15 @@ _Source: [lib/impulse-bin/index.js](../lib/impulse-bin/index.js)_
 
 <a name="tableofcontents"></a>
 
-- <a name="toc_exports"></a>[exports.ImpulseBin](#exportsimpulsebin)
-- [exports.create](#exportscreate)
-- [exports.extend](#exportsextendext)
+- <a name="toc_exportsimpulsebin"></a><a name="toc_exports"></a>[exports.ImpulseBin](#exportsimpulsebin)
+- <a name="toc_exportscreate"></a>[exports.create](#exportscreate)
+- <a name="toc_exportsextendext"></a>[exports.extend](#exportsextendext)
 - <a name="toc_impulsebin"></a>[ImpulseBin](#impulsebin)
-- <a name="toc_impulsebinprototype"></a>[ImpulseBin.prototype.run](#impulsebinprototyperunprovider-handler)
-- [ImpulseBin.prototype.createVerbose](#impulsebinprototypecreateverboseargs)
-- [ImpulseBin.prototype.exit](#impulsebinprototypeexitmsg-code1)
-- [ImpulseBin.prototype.exitOnMissingOption](#impulsebinprototypeexitonmissingoptionkey-exitcode)
-- [ImpulseBin.prototype.exitOnShelljsErr](#impulsebinprototypeexitonshelljserrres)
+- <a name="toc_impulsebinprototyperunprovider-handler"></a><a name="toc_impulsebinprototype"></a>[ImpulseBin.prototype.run](#impulsebinprototyperunprovider-handler)
+- <a name="toc_impulsebinprototypecreateverboseargs"></a>[ImpulseBin.prototype.createVerbose](#impulsebinprototypecreateverboseargs)
+- <a name="toc_impulsebinprototypeexitmsg-code1"></a>[ImpulseBin.prototype.exit](#impulsebinprototypeexitmsg-code1)
+- <a name="toc_impulsebinprototypeexitonmissingoptionkey-exitcode"></a>[ImpulseBin.prototype.exitOnMissingOption](#impulsebinprototypeexitonmissingoptionkey-exitcode)
+- <a name="toc_impulsebinprototypeexitonshelljserrres"></a>[ImpulseBin.prototype.exitOnShelljsErr](#impulsebinprototypeexitonshelljserrres)
 
 <a name="exports"></a>
 
