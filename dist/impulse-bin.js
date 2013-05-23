@@ -206,10 +206,14 @@
         };
     });
     require.alias("visionmedia-configurable.js/index.js", "impulse-bin/deps/configurable.js/index.js");
+    require.alias("visionmedia-configurable.js/index.js", "configurable.js/index.js");
     require.alias("codeactual-extend/index.js", "impulse-bin/deps/extend/index.js");
+    require.alias("codeactual-extend/index.js", "extend/index.js");
     require.alias("component-each/index.js", "impulse-bin/deps/each/index.js");
+    require.alias("component-each/index.js", "each/index.js");
     require.alias("component-type/index.js", "component-each/deps/type/index.js");
     require.alias("component-bind/index.js", "impulse-bin/deps/bind/index.js");
+    require.alias("component-bind/index.js", "bind/index.js");
     require.alias("impulse-bin/lib/component/main.js", "impulse-bin/index.js");
     if (typeof exports == "object") {
         module.exports = require("impulse-bin");
@@ -218,6 +222,6 @@
             return require("impulse-bin");
         });
     } else {
-        window["impulseBin"] = require("impulse-bin");
+        this["impulseBin"] = require("impulse-bin");
     }
 })();
