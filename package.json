@@ -38,7 +38,9 @@
     "sinon-doublist": "~0.4.0",
     "commander": "~1.1.1",
     "optimist": "~0.5.0",
-    "dox": "~0.4.3"
+    "dox": "~0.4.3",
+    "grunt-horde": "~0.2.1",
+    "node-component-grunt": "git://github.com/codeactual/node-component-grunt.git"
   },
   "scripts": {
     "test": "grunt test"
