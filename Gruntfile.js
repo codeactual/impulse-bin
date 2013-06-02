@@ -3,9 +3,9 @@ module.exports = function(grunt) {
 
   require('grunt-horde')
     .create(grunt)
-    .demand('projName', 'impulse-bin')
-    .demand('instanceName', 'impulseBin')
-    .demand('klassName', 'ImpulseBin')
+    .demand('initConfig.projName', 'impulse-bin')
+    .demand('initConfig.instanceName', 'impulseBin')
+    .demand('initConfig.klassName', 'ImpulseBin')
     .loot('node-component-grunt')
     .attack();
 };
