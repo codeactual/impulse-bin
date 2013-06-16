@@ -53,5 +53,6 @@
     "cli-color": "~0.2.2",
     "long-con": "~0.1.2",
     "outer-shelljs": "~0.3.3"
-  }
+  },
+  "author": "David Smith <codeactual@gmail.com>"
 }
