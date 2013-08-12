@@ -49,6 +49,18 @@ exports.run = function() {
 };
 ```
 
+### Pass arguments from `bin/myproj` to the `lib/cli/myproj.js`
+
+```js
+// bin/myproj
+bin.run(require('commander'), require('./lib/cli/myproj'), 1, 2, 3);
+
+// lib/cli/myproj.js
+exports.run = function() {
+  console.log([].slice.call(arguments)); // [1, 2, 3]
+};
+```
+
 ## Installation
 
 ### [NPM](https://npmjs.org/package/impulse-bin)

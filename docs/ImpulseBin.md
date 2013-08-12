@@ -8,7 +8,7 @@ _Source: [lib/impulse-bin/index.js](../lib/impulse-bin/index.js)_
 - <a name="toc_exportscreate"></a>[exports.create](#exportscreate)
 - <a name="toc_exportsextendext"></a>[exports.extend](#exportsextendext)
 - <a name="toc_impulsebin"></a>[ImpulseBin](#impulsebin)
-- <a name="toc_impulsebinprototyperunprovider-handler"></a><a name="toc_impulsebinprototype"></a>[ImpulseBin.prototype.run](#impulsebinprototyperunprovider-handler)
+- <a name="toc_impulsebinprototyperunprovider-handler-args"></a><a name="toc_impulsebinprototype"></a>[ImpulseBin.prototype.run](#impulsebinprototyperunprovider-handler-args)
 - <a name="toc_impulsebinprototypecreateverboseargs"></a>[ImpulseBin.prototype.createVerbose](#impulsebinprototypecreateverboseargs)
 - <a name="toc_impulsebinprototypeexitmsg-code1"></a>[ImpulseBin.prototype.exit](#impulsebinprototypeexitmsg-code1)
 - <a name="toc_impulsebinprototypeexitonmissingoptionkey-exitcode"></a>[ImpulseBin.prototype.exitOnMissingOption](#impulsebinprototypeexitonmissingoptionkey-exitcode)
@@ -87,7 +87,7 @@ bin
 
 <a name="impulsebinprototype"></a>
 
-# ImpulseBin.prototype.run(provider, handler)
+# ImpulseBin.prototype.run(provider, handler, [args]*)
 
 > Run the handler function with a prepared context.
 
@@ -109,6 +109,7 @@ bin.run(optimist, require('./path/to/handler/module'));
 
 - `{object} provider` Ex. commander.js or optimist module
 - `{object} handler`
+- `{mixed} [args]*` Remaining args are passed to handler module's `run`.
 
 <sub>Go: [TOC](#tableofcontents) | [ImpulseBin.prototype](#toc_impulsebinprototype)</sub>
 

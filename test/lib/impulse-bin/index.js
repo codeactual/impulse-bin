@@ -158,6 +158,13 @@ describe('ImpulseBin', function() {
     });
   });
 
+  describe('#run extra args', function() {
+    it('should be passed to handler module #run', function() {
+      this.bin.run(this.provider, this.handler, 1, 2, 3);
+      this.handler.run.should.have.been.calledWithExactly(1, 2, 3);
+    });
+  });
+
   describe('#createVerbose', function() {
     beforeEach(function() {
       this.bin.createVerbose.restore();

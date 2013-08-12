@@ -1,3 +1,7 @@
+# 0.1.4
+
+* feat(run): Pass extra arguments to handler module's `run`.
+
 # 0.1.3
 
 * chore(npm) Upgrade outdated dev dependencies
