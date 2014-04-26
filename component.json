@@ -14,10 +14,10 @@
     "visionmedia/configurable.js": "f87ca5f",
     "codeactual/extend": "0.1.0",
     "component/each": "8b1f645",
-    "component/bind": "9a55368"
+    "component/bind": "9a55368",
+    "codeactual/require-component": "0.1.1"
   },
-  "development": {
-  },
+  "development": {},
   "main": "lib/component/main.js",
   "scripts": [
     "lib/component/main.js"

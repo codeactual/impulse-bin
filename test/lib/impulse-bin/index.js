@@ -3,7 +3,7 @@ var sinon = require('sinon');
 var chai = require('chai');
 
 var should = chai.should();
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 chai.use(require('sinon-chai'));
 
 var impulseBin = require('../../..');
