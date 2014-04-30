@@ -2,7 +2,7 @@
   "name": "impulse-bin",
   "repo": "codeactual/impulse-bin",
   "description": "node.js bin/ script module loader",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "keywords": [
     "bin",
     "bin script",

@@ -1,21 +1,25 @@
+# 0.1.5
+
+- chore(npm) Upgrade outdated deps
+
 # 0.1.4
 
-* feat(run): Pass extra arguments to handler module's `run`.
-* chore(npm) Upgrade outdated dev dependencies
+- feat(run): Pass extra arguments to handler module's `run`.
+- chore(npm) Upgrade outdated dev dependencies
 
 # 0.1.3
 
-* chore(npm) Upgrade outdated dev dependencies
+- chore(npm) Upgrade outdated dev dependencies
 
 # 0.1.2
 
-* Upgrade `apidox` and dependents.
+- Upgrade `apidox` and dependents.
 
 # 0.1.1
 
-* Remove NPM shrinkwrapping.
+- Remove NPM shrinkwrapping.
 
 # 0.1.0
 
-* Initial API: `run()`, `createVerbose()`, `exit()`, `exitOnMissingOption()`, `exitOnShelljsErr()`.
-* Initial injected dependencies: `child_process`, `fs`, `cli-color`, `shelljs`, `util`.
+- Initial API: `run()`, `createVerbose()`, `exit()`, `exitOnMissingOption()`, `exitOnShelljsErr()`.
+- Initial injected dependencies: `child_process`, `fs`, `cli-color`, `shelljs`, `util`.

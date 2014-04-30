@@ -1,7 +1,7 @@
 {
   "name": "impulse-bin",
   "description": "node.js bin/ script module loader",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "index.js",
   "keywords": [
     "bin",

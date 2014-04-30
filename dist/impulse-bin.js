@@ -51,6 +51,30 @@
             return obj;
         };
     });
+    require.register("codeactual~require-component@0.1.1", function(exports, module) {
+        "use strict";
+        module.exports = function(require) {
+            function requireComponent(baseName) {
+                var found;
+                Object.keys(require.modules).forEach(function findComponent(fullName) {
+                    if (found) {
+                        return;
+                    }
+                    if (new RegExp("(^|~)" + baseName + "@").test(fullName)) {
+                        found = fullName;
+                    }
+                });
+                if (found) {
+                    return require(found);
+                } else {
+                    return require(baseName);
+                }
+            }
+            return {
+                requireComponent: requireComponent
+            };
+        };
+    });
     require.register("codeactual~extend@0.1.0", function(exports, module) {
         module.exports = function extend(object) {
             var args = Array.prototype.slice.call(arguments, 1);
@@ -134,30 +158,6 @@
             var args = [].slice.call(arguments, 2);
             return function() {
                 return fn.apply(obj, args.concat(slice.call(arguments)));
-            };
-        };
-    });
-    require.register("codeactual~require-component@0.1.1", function(exports, module) {
-        "use strict";
-        module.exports = function(require) {
-            function requireComponent(baseName) {
-                var found;
-                Object.keys(require.modules).forEach(function findComponent(fullName) {
-                    if (found) {
-                        return;
-                    }
-                    if (new RegExp("(^|~)" + baseName + "@").test(fullName)) {
-                        found = fullName;
-                    }
-                });
-                if (found) {
-                    return require(found);
-                } else {
-                    return require(baseName);
-                }
-            }
-            return {
-                requireComponent: requireComponent
             };
         };
     });
