@@ -1,6 +1,6 @@
 {
   "name": "impulse-bin",
-  "description": "node.js bin/ script module loader",
+  "description": "CLI module runner",
   "version": "0.1.5",
   "main": "index.js",
   "keywords": [

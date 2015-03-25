@@ -1,4 +1,4 @@
-Modules for commander.js and others
+node.js CLI module runner
 
 _Source: [lib/impulse-bin/index.js](../lib/impulse-bin/index.js)_
 
