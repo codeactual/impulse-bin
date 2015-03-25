@@ -1,6 +1,6 @@
 # impulse-bin
 
-node.js `bin/` script module loader
+node.js CLI module runner
 
 * Adapters for [commander.js](https://github.com/visionmedia/commander.js) and [node-optimist](https://github.com/substack/node-optimist)
 * Injects common dependencies like `this.child_process`, `this.shelljs`, etc.
