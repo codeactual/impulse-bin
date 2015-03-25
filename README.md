@@ -65,6 +65,8 @@ exports.run = function() {
 
 ### [NPM](https://npmjs.org/package/impulse-bin)
 
+[![NPM](https://nodei.co/npm/impulse-bin.png?downloads=true)](https://nodei.co/npm/impulse-bin/)
+
     npm install impulse-bin
 
 ## Documentation
