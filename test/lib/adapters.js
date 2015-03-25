@@ -4,7 +4,7 @@
 const sinon = require('sinon');
 const chai = require('chai');
 
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 chai.use(require('sinon-chai'));
 
 require('sinon-doublist')(sinon, 'mocha');
