@@ -56,7 +56,8 @@
     "outer-shelljs": "^0.3.5"
   },
   "author": "David Smith <codeactual@gmail.com>",
-  "devdir-ci": {
-    "version": 1
-  }
+  "files": [
+    "index.js",
+    "lib"
+  ]
 }
