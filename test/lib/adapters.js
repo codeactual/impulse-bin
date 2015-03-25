@@ -1,8 +1,9 @@
-/*jshint expr:true*/
-var sinon = require('sinon');
-var chai = require('chai');
+/*eslint func-names: 0, new-cap: 0, no-unused-expressions: 0, no-wrap-func: 0*/
+'use strict';
 
-var should = chai.should();
+const sinon = require('sinon');
+const chai = require('chai');
+
 chai.Assertion.includeStack = true;
 chai.use(require('sinon-chai'));
 
@@ -26,7 +27,7 @@ describe('adapter for', function() {
 
   describe('commander.js', function() {
     beforeEach(function() {
-      var commander = require('commander');
+      const commander = require('commander');
       commander.option('--foo <#>', '', Number).option('--bar <#>', '', Number);
       this.provider = commander;
       this.adapter = require('../../lib/adapter/commander');
@@ -37,13 +38,13 @@ describe('adapter for', function() {
     });
 
     it('should show help', function() {
-      var stub = this.stub(this.provider, 'outputHelp');
+      const stub = this.stub(this.provider, 'outputHelp');
       this.adapter.help(this.provider);
       stub.should.have.been.called;
     });
 
     it('should extract options', function() {
-      var actual = this.adapter.options(this.provider);
+      const actual = this.adapter.options(this.provider);
       actual.foo.should.equal(this.options.foo);
       actual.bar.should.equal(this.options.bar);
     });
@@ -60,13 +61,13 @@ describe('adapter for', function() {
     });
 
     it('should show help', function() {
-      var stub = this.stub(this.provider, 'showHelp');
+      const stub = this.stub(this.provider, 'showHelp');
       this.adapter.help(this.provider);
       stub.should.have.been.called;
     });
 
     it('should extract options', function() {
-      var actual = this.adapter.options(this.provider);
+      const actual = this.adapter.options(this.provider);
       actual.foo.should.equal(this.options.foo);
       actual.bar.should.equal(this.options.bar);
     });

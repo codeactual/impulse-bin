@@ -1,12 +1,14 @@
-/*jshint expr:true*/
-var sinon = require('sinon');
-var chai = require('chai');
+/*eslint func-names: 0, new-cap: 0, no-unused-expressions: 0, no-wrap-func: 0*/
+'use strict';
 
-var should = chai.should();
+const sinon = require('sinon');
+const chai = require('chai');
+
+const should = chai.should();
 chai.config.includeStack = true;
 chai.use(require('sinon-chai'));
 
-var impulseBin = require('../../..');
+const impulseBin = require('../../..');
 
 require('sinon-doublist')(sinon, 'mocha');
 
@@ -29,7 +31,7 @@ describe('ImpulseBin', function() {
     this.exitOnShelljsErrStub = this.stub(this.bin, 'exitOnShelljsErr');
 
     this.verboseLogger = function() {};
-    this.createVerboseStub.withArgs(console.log).returns(this.verboseLogger);
+    this.createVerboseStub.withArgs(console.log).returns(this.verboseLogger); // eslint-disable-line no-console
 
     this.provider = require('commander');
     this.handler = {
@@ -71,14 +73,14 @@ describe('ImpulseBin', function() {
     });
 
     it('should init stderr logger', function() {
-      var logger = {iAmA: 'stderr logger'};
+      const logger = {iAmA: 'stderr logger'};
       this.createConsoleStub.withArgs('[stderr]').returns(logger);
       this.bin.run(this.provider, this.handler);
       this.bin.stderr.should.deep.equal(logger);
     });
 
     it('should init stdout logger', function() {
-      var logger = {iAmA: 'stdout logger'};
+      const logger = {iAmA: 'stdout logger'};
       this.createConsoleStub.withArgs('[stdout]').returns(logger);
       this.bin.run(this.provider, this.handler);
       this.bin.stdout.should.deep.equal(logger);
@@ -123,7 +125,7 @@ describe('ImpulseBin', function() {
       });
 
       it('should include OuterShelljs', function() {
-        var OuterShelljs = require('outer-shelljs').OuterShelljs;
+        const OuterShelljs = require('outer-shelljs').OuterShelljs;
         this.handler.run.thisValues[0].shelljs.should.be.an.instanceOf(OuterShelljs);
       });
 
@@ -150,7 +152,7 @@ describe('ImpulseBin', function() {
       });
 
       it('should include #exitOnShelljsErr mixin', function() {
-        var res = {iAma: 'shelljs result'};
+        const res = {iAma: 'shelljs result'};
         this.handler.run.thisValues[0].exitOnShelljsErr(res);
         this.exitOnShelljsErrStub.should.have.been.calledWithExactly(res);
         this.exitOnShelljsErrStub.should.have.been.calledOn(this.bin);
@@ -174,9 +176,9 @@ describe('ImpulseBin', function() {
 
     it('should use LongCon#create', function() {
       this.options.verbose = true;
-      var logger = this.bin.createVerbose(console.error, 'red');
+      this.bin.createVerbose(console.error, 'red'); // eslint-disable-line no-console
       this.createConsoleStub.should.have.been.calledWithExactly(
-        '[verbose]', console.error, 'red'
+        '[verbose]', console.error, 'red' // eslint-disable-line no-console
       );
     });
 
@@ -209,7 +211,7 @@ describe('ImpulseBin', function() {
     });
 
     it('should output message to stderr', function() {
-      var stub = this.stub(this.bin, 'stderr');
+      const stub = this.stub(this.bin, 'stderr');
       this.bin.exit(this.msg);
       stub.should.have.been.calledWithExactly(this.msg);
     });
