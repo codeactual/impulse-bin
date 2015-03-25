@@ -1,3 +1,20 @@
+# 0.2.0
+
+## breaking
+
+- fix(run): do not inject `child_process/fs/shelljs/util`
+  - `child_process/fs/util`: can easily be loaded by the `run()` as
+    needed, no real added value
+  - `shelljs`: there's less need now that alternatives like `co-exec` and
+    `syncExec` exist
+- refactor(node): Migrate to ES6 features like `let` and `const`
+  - Switch to `iojs` as only build target
+
+## non-breaking
+
+- refactor(component): Migrate to NPM-only deps
+- style(jshint): Migrate to eslint
+
 # 0.1.5
 
 - chore(npm) Upgrade outdated deps
