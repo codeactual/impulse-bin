@@ -12,6 +12,7 @@
 
 ## non-breaking
 
+- feat: add `GeneratorFunction` support via `runGenerator(provider, handler)`
 - refactor(component): Migrate to NPM-only deps
 - style(jshint): Migrate to eslint
 

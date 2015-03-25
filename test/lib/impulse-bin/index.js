@@ -3,6 +3,7 @@
 
 const sinon = require('sinon');
 const chai = require('chai');
+const thunkify = require('thunkify');
 
 const should = chai.should();
 chai.config.includeStack = true;
@@ -10,10 +11,14 @@ chai.use(require('sinon-chai'));
 
 const impulseBin = require('../../..');
 
+require('co-mocha');
+
 require('sinon-doublist')(sinon, 'mocha');
 
 describe('ImpulseBin', function() {
   beforeEach(function() {
+    const _this = this;
+
     this.bin = impulseBin.create();
 
     this.options = {fakeKey: 'fakeVal'};
@@ -36,6 +41,22 @@ describe('ImpulseBin', function() {
     this.handler = {
       init: this.spy(),
       run: this.spy()
+    };
+
+    function callSpyCb(spy, done) {
+      spy();
+      done();
+    }
+    const callSpyThunk = thunkify(callSpyCb);
+    this.handlerWithGenerator = {
+      init: this.spy(),
+
+      // Since sinon does not yet have generator support, we will still use a spy
+      // to capture the context/args received by run().
+      run: function *(a, b, c) {
+        yield callSpyThunk(_this.handlerWithGenerator.spy.bind(this, a, b, c));
+      },
+      spy: this.spy()
     };
   });
 
@@ -130,6 +151,15 @@ describe('ImpulseBin', function() {
         this.exitOnMissingOptionStub.should.have.been.calledWithExactly('config', 5);
         this.exitOnMissingOptionStub.should.have.been.calledOn(this.bin);
       });
+    });
+  });
+
+  describe('#runGenerator', function() {
+    it('should support GeneratorFunction handlers', function *() {
+      yield this.bin.runGenerator(this.provider, this.handlerWithGenerator, 1, 2, 3);
+      this.handlerWithGenerator.init.should.have.been.calledWithExactly(this.provider);
+      this.handlerWithGenerator.spy.thisValues[0].args.should.deep.equal(this.args);
+      this.handlerWithGenerator.spy.should.have.been.calledWithExactly(1, 2, 3);
     });
   });
 

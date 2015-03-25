@@ -3,7 +3,6 @@
 node.js CLI module runner
 
 * Adapters for [commander.js](https://github.com/visionmedia/commander.js) and [node-optimist](https://github.com/substack/node-optimist)
-* Injects common dependencies like `this.child_process`, `this.shelljs`, etc.
 * Basic set of [long-con](https://github.com/codeactual/long-con) console loggers for stdout/stderr/verbose with [color](https://github.com/medikoo/cli-color)
 
 [![Build Status](https://travis-ci.org/codeactual/impulse-bin.png)](https://travis-ci.org/codeactual/impulse-bin)
@@ -22,6 +21,9 @@ Executables are reduced to thin loading calls.
 ```js
 var bin = require('impulse-bin').create();
 bin.run(require('commander'), require('./lib/cli/myproj'));
+
+// Or if your CLI module's run() function is a generator:
+bin.runGenerator(require('commander'), require('./lib/cli/myproj'));
 ```
 
 ### `lib/cli/myproj.js`

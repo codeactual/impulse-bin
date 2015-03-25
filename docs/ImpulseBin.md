@@ -9,6 +9,7 @@ _Source: [lib/impulse-bin/index.js](../lib/impulse-bin/index.js)_
 - <a name="toc_exportsextendext"></a>[exports.extend](#exportsextendext)
 - <a name="toc_impulsebin"></a>[ImpulseBin](#impulsebin)
 - <a name="toc_impulsebinprototyperunprovider-handler-args"></a><a name="toc_impulsebinprototype"></a>[ImpulseBin.prototype.run](#impulsebinprototyperunprovider-handler-args)
+- <a name="toc_impulsebinprototyperungenerator"></a>[ImpulseBin.prototype.runGenerator](#impulsebinprototyperungenerator)
 - <a name="toc_impulsebinprototypecreateverboseargs"></a>[ImpulseBin.prototype.createVerbose](#impulsebinprototypecreateverboseargs)
 - <a name="toc_impulsebinprototypeexitmsg-code1"></a>[ImpulseBin.prototype.exit](#impulsebinprototypeexitmsg-code1)
 - <a name="toc_impulsebinprototypeexitonmissingoptionkey-exitcode"></a>[ImpulseBin.prototype.exitOnMissingOption](#impulsebinprototypeexitonmissingoptionkey-exitcode)
@@ -95,6 +96,7 @@ bin
 ```js
 bin.run(commander, require('./path/to/handler/module'));
 bin.run(optimist, require('./path/to/handler/module'));
+yield bin.runGenerator(commander, require('./path/to/handler/module'));
 ```
 
 **`handler` module must export:**
@@ -107,8 +109,14 @@ bin.run(optimist, require('./path/to/handler/module'));
 **Parameters:**
 
 - `{object} provider` Ex. commander.js or optimist module
-- `{object} handler`
+- `{object} handler` User-defined module with init/run/etc. functions
 - `{mixed} [args]*` Remaining args are passed to handler module's `run`.
+
+<sub>Go: [TOC](#tableofcontents) | [ImpulseBin.prototype](#toc_impulsebinprototype)</sub>
+
+# ImpulseBin.prototype.runGenerator()
+
+> GeneratorFunction compatible version of [ImpulseBin.prototype.run](#impulsebinprototyperunprovider-handler-args).
 
 <sub>Go: [TOC](#tableofcontents) | [ImpulseBin.prototype](#toc_impulsebinprototype)</sub>
 

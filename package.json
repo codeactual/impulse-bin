@@ -1,14 +1,15 @@
 {
   "name": "impulse-bin",
   "description": "CLI module runner",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "main": "index.js",
   "keywords": [
+    "console",
     "bin",
     "bin script",
     "cli",
     "cli script",
-    "module"
+    "runner"
   ],
   "contributors": [
     {
@@ -27,6 +28,7 @@
   "devDependencies": {
     "apidox": "^0.3.6",
     "chai": "^1.9.1",
+    "co-mocha": "^1.1.0",
     "commander": "^2.2.0",
     "dox": "^0.4.4",
     "grunt": "^0.4.4",
@@ -39,7 +41,8 @@
     "optimist": "^0.6.1",
     "sinon": "^1.9.1",
     "sinon-chai": "^2.5.0",
-    "sinon-doublist": "^0.5.1"
+    "sinon-doublist": "^0.5.1",
+    "thunkify": "^2.1.2"
   },
   "scripts": {
     "test": "grunt test"
