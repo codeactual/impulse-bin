@@ -28,7 +28,6 @@ describe('ImpulseBin', function() {
     this.createVerboseStub = this.stub(this.bin, 'createVerbose');
     this.exitStub = this.stub(this.bin, 'exit');
     this.exitOnMissingOptionStub = this.stub(this.bin, 'exitOnMissingOption');
-    this.exitOnShelljsErrStub = this.stub(this.bin, 'exitOnShelljsErr');
 
     this.verboseLogger = function() {};
     this.createVerboseStub.withArgs(console.log).returns(this.verboseLogger); // eslint-disable-line no-console
@@ -96,12 +95,6 @@ describe('ImpulseBin', function() {
         this.handler.run.thisValues[0].args.should.deep.equal(this.args);
       });
 
-      it('should include child_process', function() {
-        this.handler.run.thisValues[0].child_process.should.deep.equal(
-          require('child_process')
-        );
-      });
-
       it('should include console', function() {
         this.handler.run.thisValues[0].console.should.deep.equal(this.bin.console);
       });
@@ -112,25 +105,12 @@ describe('ImpulseBin', function() {
         );
       });
 
-      it('should include fs', function() {
-        this.handler.run.thisValues[0].fs.should.deep.equal(require('fs'));
-      });
-
       it('should include extracted options', function() {
         this.handler.run.thisValues[0].options.should.deep.equal(this.options);
       });
 
       it('should include provider', function() {
         this.bin.options.should.deep.equal(this.options);
-      });
-
-      it('should include OuterShelljs', function() {
-        const OuterShelljs = require('outer-shelljs').OuterShelljs;
-        this.handler.run.thisValues[0].shelljs.should.be.an.instanceOf(OuterShelljs);
-      });
-
-      it('should include util', function() {
-        this.handler.run.thisValues[0].util.should.deep.equal(require('util'));
       });
 
       it('should include #createVerbose mixin', function() {
@@ -149,13 +129,6 @@ describe('ImpulseBin', function() {
         this.handler.run.thisValues[0].exitOnMissingOption('config', 5);
         this.exitOnMissingOptionStub.should.have.been.calledWithExactly('config', 5);
         this.exitOnMissingOptionStub.should.have.been.calledOn(this.bin);
-      });
-
-      it('should include #exitOnShelljsErr mixin', function() {
-        const res = {iAma: 'shelljs result'};
-        this.handler.run.thisValues[0].exitOnShelljsErr(res);
-        this.exitOnShelljsErrStub.should.have.been.calledWithExactly(res);
-        this.exitOnShelljsErrStub.should.have.been.calledOn(this.bin);
       });
     });
   });
@@ -252,22 +225,6 @@ describe('ImpulseBin', function() {
 
       this.bin.exitOnMissingOption(['fakeKey', 'notPresent'], 2);
       this.exitStub.should.have.been.calledWithExactly('--notPresent is required', 2);
-    });
-  });
-
-  describe('#exitOnShelljsErr', function() {
-    beforeEach(function() {
-      this.bin.exitOnShelljsErr.restore();
-    });
-
-    it('should do nothing on zero code', function() {
-      this.bin.exitOnShelljsErr({code: 0});
-      this.exitStub.should.not.have.been.called;
-    });
-
-    it('should use #exit on non-zero code', function() {
-      this.bin.exitOnShelljsErr({code: 2, output: this.msg});
-      this.exitStub.should.have.been.calledWithExactly(this.msg, 2);
     });
   });
 });

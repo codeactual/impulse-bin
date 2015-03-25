@@ -39,10 +39,6 @@ exports.init = function(provider) {
 exports.run = function() {
   this.exitOnMissingOption(['config']);
 
-  if (!this.shelljs._('test', '-f', this.options.config)) {
-    this.stderr('config file not found: %s', this.options.config);
-  }
-
   this.stdout('using config file: %s', this.clc.green(this.options.config));
 
   // ...

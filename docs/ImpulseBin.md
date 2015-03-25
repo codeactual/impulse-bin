@@ -12,7 +12,6 @@ _Source: [lib/impulse-bin/index.js](../lib/impulse-bin/index.js)_
 - <a name="toc_impulsebinprototypecreateverboseargs"></a>[ImpulseBin.prototype.createVerbose](#impulsebinprototypecreateverboseargs)
 - <a name="toc_impulsebinprototypeexitmsg-code1"></a>[ImpulseBin.prototype.exit](#impulsebinprototypeexitmsg-code1)
 - <a name="toc_impulsebinprototypeexitonmissingoptionkey-exitcode"></a>[ImpulseBin.prototype.exitOnMissingOption](#impulsebinprototypeexitonmissingoptionkey-exitcode)
-- <a name="toc_impulsebinprototypeexitonshelljserrres"></a>[ImpulseBin.prototype.exitOnShelljsErr](#impulsebinprototypeexitonshelljserrres)
 
 <a name="exports"></a>
 
@@ -51,7 +50,7 @@ _Source: [lib/impulse-bin/index.js](../lib/impulse-bin/index.js)_
 > ImpulseBin constructor.
 
 ```js
-var bin = require('impulse-bin').create();
+const bin = require('impulse-bin').create();
 ```
 
 **Example configuration:**
@@ -121,7 +120,7 @@ matching the `verboseOption` config value.
 **Examples:**
 
 ```js
-var log = bin.createVerbose();
+const log = bin.createVerbose();
 fn('key: %s', key);
 fn.push('method entered: %s', name);
 fn.pop('method exited: %s', name);
@@ -175,25 +174,6 @@ bin.exitOnMissingOption(['config', 'file'], 3); // status code = 3
 
 - `{string | array} key`
 - `{number} exitCode`
-
-<sub>Go: [TOC](#tableofcontents) | [ImpulseBin.prototype](#toc_impulsebinprototype)</sub>
-
-# ImpulseBin.prototype.exitOnShelljsErr(res)
-
-> Exit if the ShellJS exec() result object indicates an error.
-
-- `output` string will be sent to stderr.
-
-**Example:**
-
-```js
-var res = bin.shelljs._('exec', ...);
-bin.exitOnShelljsErr(res);
-```
-
-**Parameters:**
-
-- `{object} res` Result object w/ standard `code` and `output`.
 
 <sub>Go: [TOC](#tableofcontents) | [ImpulseBin.prototype](#toc_impulsebinprototype)</sub>
 

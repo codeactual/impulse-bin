@@ -11,16 +11,12 @@ CLI input:
 
 Modules:
 
-* `{object} child_process`
 * `{object} console`: [long-con](https://github.com/codeactual/long-con) to create custom loggers
 * `{object} clc`: [cli-color](https://github.com/medikoo/cli-color)
-* `{object} fs`
-* `{object} shelljs`: [outer-shelljs](https://github.com/codeactual/outer-shelljs)
-* `{object} util`
 
 Prepared [long-con](https://github.com/codeactual/long-con/blob/master/docs/LongCon.md) loggers:
 
-* `{function} stderr` 
+* `{function} stderr`
 * `{function} stdout`
 * `{function} verbose`
 
@@ -32,4 +28,3 @@ Process:
 
 * `{function} exit`: ([docs](ImpulseBin.md))
 * `{function} exitOnMissingOption`: ([docs](ImpulseBin.md))
-* `{function} exitOnShelljsErr`: ([docs](ImpulseBin.md))
